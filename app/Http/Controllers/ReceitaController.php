@@ -72,7 +72,7 @@ class ReceitaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource..
      *
      * @param  \App\Models\Receita  $receita
      * @return \Illuminate\Http\Response
