@@ -1,4 +1,4 @@
-@extends('site.master.layout')
+@extends('layouts.app')
 
 @section('content')
 
@@ -16,7 +16,7 @@
                         Com objetivo de auxiliar o agronomo no cálculo do veneno para utilizar na propriedade rural, o Agronote irá calcular todo o veneno para você.
                         Quer saber como? Clique em "Começar agora"!
                     </p>
-                    <p><a class="btn btn-lg btn-primary" href="{{route('site.recipe')}}">Começar agora </a></p>
+                    <p><a class="btn btn-lg btn-primary" href="{{route('receita.index')}}">Começar agora </a></p>
                 </div>
             </div>
         </div>

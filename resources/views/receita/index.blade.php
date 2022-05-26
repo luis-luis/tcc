@@ -1,4 +1,4 @@
-@extends('site.master.layout')
+@extends('layouts.app')
 
 @section('content')
 
@@ -45,57 +45,17 @@
         </div>
         <div class="row">
             <div class="col-4 mb-3">
-                <label class="form-label">Veneno a ser utilizado #1</label>
-                <input type="text" class="form-control" id="veneno1" name="veneno1">
+                <label class="form-label">Veneno a ser utilizado</label>
+                <input type="text" class="form-control" id="veneno" name="veneno">
             </div>
             <div class="col-4 mb-3">
-                <label class="form-label">Quantidade veneno #1</label>
-                <input type="number" class="form-control" id="qtdv1" name="qtdv1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 mb-3">
-                <label class="form-label">Veneno a ser utilizado #2</label>
-                <input type="text" class="form-control" id="veneno2" name="veneno2">
-            </div>
-            <div class="col-4 mb-3">
-                <label class="form-label">Quantidade veneno #2</label>
-                <input type="number" class="form-control" id="qtdv2" name="qtdv2">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 mb-3">
-                <label class="form-label">Veneno a ser utilizado #3</label>
-                <input type="text" class="form-control" id="veneno3" name="veneno3">
-            </div>
-            <div class="col-4 mb-3">
-                <label class="form-label">Quantidade veneno #3</label>
-                <input type="number" class="form-control" id="qtdv3" name="qtdv3">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 mb-3">
-                <label class="form-label">Veneno a ser utilizado #4</label>
-                <input type="text" class="form-control" id="veneno4" name="veneno4">
-            </div>
-            <div class="col-4 mb-3">
-                <label class="form-label">Quantidade veneno #4</label>
-                <input type="number" class="form-control" id="qtdv4" name="qtdv4">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 mb-3">
-                <label class="form-label">Veneno a ser utilizado #5</label>
-                <input type="text" class="form-control" id="veneno5" name="veneno5">
-            </div>
-            <div class="col-4 mb-3">
-                <label class="form-label">Quantidade veneno #5</label>
-                <input type="number" class="form-control" id="qtdv5" name="qtdv5">
+                <label class="form-label">Quantidade veneno</label>
+                <input type="number" class="form-control" id="qtdv" name="qtdv">
             </div>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
-            <a href="/tcc/tcc/public/" type="button" class="btn btn-primary col-1 ml-1">
+            <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">
                 Voltar
             </a>
         </div>
