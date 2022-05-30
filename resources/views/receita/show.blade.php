@@ -55,14 +55,14 @@
             </a>
         </div>
         <div>
-            <button href="#" type="button" class="btn btn-primary col-1 ml-1">
-                Imprimir em .PDF
-            </button>
+            <a href="{{route('receita.showpdf', $dados->idreceitas)}}" type="button" class="btn btn-primary col-1 ml-1">
+                Salvar em .PDF
+            </a>
         </div>
         <div>
-            <button href="#" type="button" class="btn btn-success col-1 ml-1">
+            <a href="{{route('receita.wpp', $dados->idreceitas)}}" type="button" class="btn btn-success col-1 ml-1">
                 Enviar via WhatsApp
-            </button>
+            </a>
         </div>
     </div>
 </div>

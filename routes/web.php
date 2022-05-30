@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ReceitaController;
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,19 @@ Route::post('/receita/insert', [ReceitaController::class, 'insert'])->name('rece
 
 Route::get('/receita/show/{receita}', [ReceitaController::class, 'show'])->name('receita.show');
 
+Route::get('/receita/showpdf/{receita}', [ReceitaController::class, 'showPDF'])->name('receita.showpdf');
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/wpp/{receita}', [ReceitaController::class, 'wpp'])->name('receita.wpp');
+
+//Route::get('/pdf', [PDFController::class, 'index'])->name('pdf');
+
+// Route::get('/wpp', function () {
+//     return redirect('https://wa.me');
+// })->name('wpp');
+
+
 
