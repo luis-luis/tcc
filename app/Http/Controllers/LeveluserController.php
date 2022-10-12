@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receita;
+use App\Models\LevelUser;
 use Illuminate\Http\Request;
 
-class HistoricoController extends Controller
+class LeveluserController extends Controller
 {
-    //função para obrigar fazer login
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return view('site.history');
+        //
     }
 
     /**
@@ -48,21 +41,21 @@ class HistoricoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\LevelUser  $levelUser
      * @return \Illuminate\Http\Response
      */
-    public function show(Receita $receita)
+    public function show(LevelUser $levelUser)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\LevelUser  $levelUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(Receita $receita)
+    public function edit(LevelUser $levelUser)
     {
         //
     }
@@ -71,10 +64,10 @@ class HistoricoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\LevelUser  $levelUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receita $receita)
+    public function update(Request $request, LevelUser $levelUser)
     {
         //
     }
@@ -82,10 +75,10 @@ class HistoricoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\LevelUser  $levelUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Receita $receita)
+    public function destroy(LevelUser $levelUser)
     {
         //
     }

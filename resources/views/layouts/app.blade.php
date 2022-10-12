@@ -37,10 +37,10 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('site.history')}}">Histórico</a>
+                            <a class="nav-link" href="{{route('site.history')}}">Histórico de receitas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('receita.index')}}">Nova Receita</a>
+                            <a class="nav-link" href="{{route('receita.index')}}">Gerar nova receita</a>
                         </li>
                         @endauth
                     </ul>

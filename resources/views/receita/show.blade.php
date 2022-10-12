@@ -10,10 +10,10 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading fw-normal lh-1">Sua receita já está pronta! <span class="text-muted"> Visualize os itens da sua receita: </span></h2>
+            <h2 class="featurette-heading fw-normal lh-1">Sua receita já está pronta! <span class="text-muted"> <br> Visualize os itens da sua receita: </span></h2>
         </div>
-        <div class="container">
-            <label><b>Cliente:</b></label> 
+        <!-- <div class="container">
+            <label><b>Cliente:</b></label>
             <label>{{$dados->nome_cliente}}</label>
             <br>
             <label><b>Telefone:</b></label>
@@ -42,28 +42,45 @@
             <br>
             <label><b>Veneno 5:</b></label>
             <label>{{$dados->nome_veneno5}}, {{$dados->qtd_veneno5}}</label>
-        </div>
+        </div> -->
+
+        <!-- Listagem de itens da receita -->
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Cliente:<b> {{$dados->nome_cliente}}</li>
+            <li class="list-group-item"><b>Telefone:<b> {{$dados->tel_cliente}}</li>
+            <li class="list-group-item"><b>Cultura:<b> {{$dados->cult}}</li>
+            <li class="list-group-item"><b>Tamanho do tanque:<b> {{$dados->tanque_veneno}}</li>
+            <li class="list-group-item"><b>Tamanho da Área a ser aplicada:<b> {{$dados->area_app}} alq.</li>
+            <li class="list-group-item"><b>Veneno 1:<b> {{$dados->nome_veneno}}, {{$dados->qtd_veneno}} Litros.</li>
+            <li class="list-group-item"><b>Veneno 2:<b> {{$dados->nome_veneno2}}, {{$dados->qtd_veneno2}} Litros.</li>
+            <li class="list-group-item"><b>Veneno 3:<b> {{$dados->nome_veneno3}}, {{$dados->qtd_veneno3}} Litros.</li>
+            <li class="list-group-item"><b>Veneno 4:<b> {{$dados->nome_veneno4}}, {{$dados->qtd_veneno4}} Litros.</li>
+            <li class="list-group-item"><b>Veneno 5:<b> {{$dados->nome_veneno5}}, {{$dados->qtd_veneno5}} Litros.</li>
+        </ul>
+        <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item text-end"><b>Veneno 5:<b> {{$dados->nome_veneno5}}, {{$dados->qtd_veneno5}}</li>
+        </ul> -->
     </div>
     <br>
     <br>
 
+    <!-- Grupo de botões -->
     <!-- botão para voltar ao início -->
-    <div class="row">
-        <div>
+    <div class="btn-group">
             <a href="{{route('site.home')}}" type="button" class="btn btn-outline-primary col-1 ml-1">
                 Voltar ao inicio
             </a>
-        </div>
-        <div>
-            <a href="{{route('receita.showpdf', $dados->idreceitas)}}" type="button" class="btn btn-primary col-1 ml-1">
+        <!-- </div>
+        <div> -->
+            <a href="{{route('receita.showpdf', $dados->idreceitas)}}" type="button" class="btn btn-primary col-1 ml-1" >
                 Salvar em .PDF
             </a>
-        </div>
-        <div>
+        <!-- </div>
+        <div> -->
             <a href="{{route('receita.wpp', $dados->idreceitas)}}" type="button" class="btn btn-success col-1 ml-1">
-                Enviar via WhatsApp
+            <i class="bi bi-whatsapp"></i> Enviar via WhatsApp
             </a>
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 <hr class="featurette-divider">

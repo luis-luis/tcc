@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+      <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Agronote</h2>
+            <p class="lead" text->Sua pulverização de maneira fácil e segura!</p>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
