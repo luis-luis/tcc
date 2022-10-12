@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -8,7 +9,13 @@
                 <div class="card-header">{{ __('Cadastro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <ul class="error">
+                        @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+
+                    <form method="POST" action="{{ route('registro') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -58,11 +65,16 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row mb-3 dropdown">
-                            <label for="leveluser" class="col-md-4 col-form-label text-md-end">{{ __('Voce é?') }}</label>
+                            <label for="leveluser" class="col-md-4 col-form-label text-md-end">{{ __('Escolha seu usuário: ') }}</label>
 
                             <div class="col-md-6 dropdown">
                                 <select name="leveluser" class="form-select">
@@ -71,11 +83,6 @@
                                     <option value="2">Agronomo</option>
                                     <option value="3">Lojista</option>
                                 </select>
-                                @error('leveluser')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
                         </div>
 

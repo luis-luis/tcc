@@ -7,6 +7,7 @@ use App\Http\Controllers\ReceitaController;
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +38,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/wpp/{receita}', [ReceitaController::class, 'wpp'])->name('receita.wpp');
 
-//Route::get('/pdf', [PDFController::class, 'index'])->name('pdf');
+Route::get('/registro', [RegistrationController::class, 'create'])->name('registro');
 
-// Route::get('/wpp', function () {
-//     return redirect('https://wa.me');
-// })->name('wpp');
-
-
-
+Route::post('registro', [RegistrationController::class, 'store']);
