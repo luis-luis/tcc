@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Produto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
-class RegistrationController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        //
+        return view ('lojista.index');
     }
 
     /**
@@ -26,7 +24,7 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        return view('registration.create');
+        //
     }
 
     /**
@@ -37,33 +35,16 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
-            'email' => 'required|email'
-
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->leveluser = $request->leveluser;
-        $user->save();
-        
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Produto $produto)
     {
         //
     }
@@ -71,10 +52,10 @@ class RegistrationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Produto $produto)
     {
         //
     }
@@ -83,10 +64,10 @@ class RegistrationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Produto $produto)
     {
         //
     }
@@ -94,10 +75,10 @@ class RegistrationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Produto $produto)
     {
         //
     }

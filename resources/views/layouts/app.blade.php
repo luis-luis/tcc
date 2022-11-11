@@ -34,16 +34,53 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('site.history')}}">Histórico de receitas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('receita.index')}}">Gerar nova receita</a>
-                        </li>
-                        @endauth
-                    </ul>
+                    @if(Auth::check())
+                    @if(Auth::user()->leveluser == 1)
+                        <ul class="navbar-nav me-auto">
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('produtor.history')}}">Histórico de despesas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('produtor.index')}}">Gerar nova despesa</a>
+                            </li>
+                            @endauth
+                        </ul>
+                        @endif
+                    
+                        @if(Auth::user()->leveluser == 2)
+                        <ul class="navbar-nav me-auto">
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('site.history')}}">Histórico de receitas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('receita.index')}}">Gerar nova receita</a>
+                            </li>
+                            @endauth
+                        </ul>
+                        @endif
+
+                        @if(Auth::user()->leveluser == 3)
+                        <ul class="navbar-nav me-auto">
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('lojista.index')}}">Cadastro de produtos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Consultar produtos cadastrados</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Verificar cotações</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>
+                            </li>
+                            @endauth
+                        </ul>
+                        @endif
+
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ReceitaController;
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +44,16 @@ Route::get('/wpp/{receita}', [ReceitaController::class, 'wpp'])->name('receita.w
 Route::get('/registro', [RegistrationController::class, 'create'])->name('registro');
 
 Route::post('registro', [RegistrationController::class, 'store']);
+
+Route::get('/despesa', [DespesaController::class, 'index'])->name('produtor.index');
+
+Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('produtor.insert');
+
+Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
+
+Route::get('/historicodespesa', [DespesaController::class, 'show'])->name('produtor.history');
+
+Route::post('/showhistory', [DespesaController::class, 'historico'])->name('produtor.showhistory');
+
+
+
