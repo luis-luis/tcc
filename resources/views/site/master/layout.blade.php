@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{route('site.home')}}">Home</a>
+              <a class="nav-link active" aria-current="page" href="">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('site.history')}}">Histórico</a>
+              <a class="nav-link" href="">Histórico</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('receita.index')}}">Nova Receita</a>
+              <a class="nav-link" href="">Nova Receita</a>
             </li>
           </ul>
         </div>

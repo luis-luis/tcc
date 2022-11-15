@@ -46,7 +46,6 @@ class DespesaController extends Controller
         try {
             $despesa->nome_despesa = $request->nome_despesa;
             $despesa->valor_despesa = $request->valor_despesa;
-            // $despesa->date("YYYY-MM-DD") -> $request->data;
             $despesa->data_despesa = Carbon::now();
             $despesa->save();
 
@@ -63,19 +62,20 @@ class DespesaController extends Controller
      * @param  \App\Models\Despesa  $despesa
      * @return \Illuminate\Http\Response
      */
-    public function show(Despesa $despesa)
+    public function show(Request $request)
     {
-        return view ('produtor.history');
+        if ($request->isMethod('post')) {
+            $dados = Despesa::where('nome_despesa', 'LIKE', '%' . $request->nome_despesa . '%')->get();
+            // dd($request->nome_despesa);
+
+        } else {
+            $dados = Despesa::all();
+        }
+
+        return view('produtor.history', ['dados' => $dados]);
     }
 
-    public function historico(Despesa $despesa)
-    {    
 
-        $despesa = Despesa::all();
-
-        return view('produtor.showhistory', ['dados' => $despesa]);
-        
-    }
 
     /**
      * Show the form for editing the specified resource.

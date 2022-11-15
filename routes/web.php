@@ -25,15 +25,11 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/', [HomeController::class, 'index'])->name('site.home');
 
-Route::get('/historico', [HistoricoController::class, 'index'])->name('site.history');
+Route::any('/receita', [ReceitaController::class, 'index'])->name('receita.history');
 
-Route::get('/receita', [ReceitaController::class, 'index'])->name('receita.index');
+Route::any('/showreceita', [ReceitaController::class, 'show'])->name('receita.show');
 
-Route::post('/receita/insert', [ReceitaController::class, 'insert'])->name('receita.insert');
-
-Route::get('/receita/show/{receita}', [ReceitaController::class, 'show'])->name('receita.show');
-
-Route::get('/receita/showpdf/{receita}', [ReceitaController::class, 'showPDF'])->name('receita.showpdf');
+Route::any('/insertveneno', [ReceitaController::class, 'edit'])->name('receita.insertveneno');
 
 Auth::routes();
 
@@ -51,9 +47,6 @@ Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('prod
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
 
-Route::get('/historicodespesa', [DespesaController::class, 'show'])->name('produtor.history');
+Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
 
-Route::post('/showhistory', [DespesaController::class, 'historico'])->name('produtor.showhistory');
-
-
-
+Route::get('/produtohistorico', [ProdutoController::class, 'index'])->name('lojista.history');

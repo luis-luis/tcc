@@ -44,6 +44,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('produtor.index')}}">Gerar nova despesa</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
+                            </li>
                             @endauth
                         </ul>
                         @endif
@@ -52,10 +55,10 @@
                         <ul class="navbar-nav me-auto">
                             @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('site.history')}}">Histórico de receitas</a>
+                                <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('receita.index')}}">Gerar nova receita</a>
+                                <a class="nav-link" href="{{route('receita.show')}}">Gerar nova pulverização</a>
                             </li>
                             @endauth
                         </ul>
