@@ -60,6 +60,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('receita.show')}}">Gerar nova pulverização</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('pessoa.insertpessoa')}}">Cadastrar novo cliente</a>
+                            </li>
                             @endauth
                         </ul>
                         @endif

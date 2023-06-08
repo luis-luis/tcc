@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Receita;
+use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ReceitaController extends Controller
 {
@@ -18,11 +20,12 @@ class ReceitaController extends Controller
     {
         {
             if ($request->isMethod('post')) {
-                $dados = Receita::where('nome_cliente', 'LIKE', '%' . $request->nome_cliente . '%')->get();
+                $dados = Receita::where('nome_cliente', 'LIKE', '%' . $request->nome_cliente . '%')->where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();
                 // dd($request->nome_despesa);
     
             } else {
-                $dados = Receita::all();
+                $dados = Receita::where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();                
+                //$dados = Receita::all();
             }
     
             return view('receita.history', ['dados' => $dados]);
@@ -96,6 +99,7 @@ class ReceitaController extends Controller
             echo $e->getMessage();
         };
     }
+
 
     /**
      * Show the form for editing the specified resource.

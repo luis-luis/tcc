@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ReceitaController;
+use App\Http\Controllers\PessoaController; 
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,3 +51,7 @@ Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index
 Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
 
 Route::get('/produtohistorico', [ProdutoController::class, 'index'])->name('lojista.history');
+
+Route::get('/pessoa', [PessoaController::class, 'pessoa'])->name('pessoa.insertpessoa');
+
+Route::post('/pessoa/insert', [PessoaController::class, 'create'])->name('pessoa.insert');
