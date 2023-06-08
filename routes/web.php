@@ -46,11 +46,13 @@ Route::get('/despesa', [DespesaController::class, 'index'])->name('produtor.inde
 
 Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('produtor.insert');
 
-Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
-
 Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
 
-Route::get('/produtohistorico', [ProdutoController::class, 'index'])->name('lojista.history');
+Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
+
+Route::get('/produtohistorico', [ProdutoController::class, 'show'])->name('lojista.history');
+
+Route::post('/insertproduto', [ProdutoController::class, 'store'])->name('lojista.insertproduto');
 
 Route::get('/pessoa', [PessoaController::class, 'pessoa'])->name('pessoa.insertpessoa');
 

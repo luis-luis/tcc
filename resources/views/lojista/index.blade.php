@@ -9,7 +9,7 @@
         <p class="lead" text->Cadastre seus produtos</p>
     </div>
 </div>
-<form method="post" action="">
+<form method="post" action="{{route('lojista.insertproduto')}}">
     <div class="container py-3">
         @csrf
         <div class="mb-3">
@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             <label for="phone">Valor do produto</label>
-            <input type="number" class="form-control" id="valor_produto" name="valor_despesa">
+            <input type="number" class="form-control" id="valor_produto" name="valor_produto">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
@@ -38,4 +38,3 @@
 </form>
 
 @endsection
-<!-- {{route('produtor.insert')}} -->

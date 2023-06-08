@@ -47,8 +47,6 @@ class PessoaController extends Controller
     
      public function create(Request $request)
     {
-
-        
         $pessoa = new Pessoa;
         $pessoa->nome_pessoa = $request->input('cliente');
         $pessoa->tel_pessoa = $request->input('phone');

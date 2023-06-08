@@ -74,7 +74,7 @@
                                 <a class="nav-link" href="{{route('lojista.index')}}">Cadastro de produtos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Consultar produtos cadastrados</a>
+                                <a class="nav-link" href="{{route('lojista.history')}}">Consultar produtos cadastrados</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="">Verificar cotações</a>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -18,13 +20,31 @@ class ProdutoController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Produto  $produto
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $produtos = Produto::where('nome_produto', 'LIKE', '%' . $request->id . '%')->get();
+
+        } else {
+            $produtos = Produto::all();                
+        }
+
+        return view('lojista.history', compact('produtos'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,19 +55,18 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Criação de um novo produto com os dados do formulário
+        $produto = new Produto;
+        $produto->marca_produto = $request->marca_produto;
+        $produto->nome_produto = $request->nome_produto;
+        $produto->descricao_produto = $request->descricao_produto;
+        $produto->valor_produto = $request->valor_produto;
+        $produto->save();
+    
+        // Redirecionamento para uma página de sucesso ou exibição dos dados salvos
+        return redirect()->route('lojista.history')->with('success', 'Produto cadastrado com sucesso!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Produto $produto)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
