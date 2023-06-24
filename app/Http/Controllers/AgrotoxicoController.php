@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receita;
+use App\Models\agrotoxico;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AgrotoxicoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('site.home');
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\agrotoxico  $agrotoxico
      * @return \Illuminate\Http\Response
      */
-    public function show(Receita $receita)
+    public function show(agrotoxico $agrotoxico)
     {
         //
     }
@@ -52,10 +52,10 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\agrotoxico  $agrotoxico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Receita $receita)
+    public function edit(agrotoxico $agrotoxico)
     {
         //
     }
@@ -64,10 +64,10 @@ class HomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\agrotoxico  $agrotoxico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receita $receita)
+    public function update(Request $request, agrotoxico $agrotoxico)
     {
         //
     }
@@ -75,10 +75,10 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Receita  $receita
+     * @param  \App\Models\agrotoxico  $agrotoxico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Receita $receita)
+    public function destroy(agrotoxico $agrotoxico)
     {
         //
     }

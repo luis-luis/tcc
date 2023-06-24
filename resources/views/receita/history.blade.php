@@ -36,6 +36,7 @@
             <li class="list-group-item"><b>Data do registro: <b>{{$pulv->data_receita}} </li>
             <li class="list-group-item"><b>Tamanho da área de aplicacao: <b>{{$pulv->area_app}} </li>
             <li class="list-group-item"><b>Cultura aplicada: <b>{{$pulv->cult}} </li>
+            <br>
         </ul>
     @endforeach
 

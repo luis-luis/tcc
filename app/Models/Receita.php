@@ -13,5 +13,11 @@ class Receita extends Model
 
     protected $primaryKey = 'idreceitas';
 
-    //protected $fillable = ['nome_cliente, tel_cliente, nome_veneno, nome_veneno2, nome_veneno3, nome_veneno4, nome_veneno5,qtd_veneno, qtd_veneno2, qtd_veneno3, qtd_veneno4, qtd_veneno5, tanque_veneno, cult, area_app'];'
+    public function pulvVenenos()
+{
+    return $this->hasMany(PulvVeneno::class);
 }
+
+}
+    //protected $fillable = ['nome_cliente, tel_cliente, nome_veneno, nome_veneno2, nome_veneno3, nome_veneno4, nome_veneno5,qtd_veneno, qtd_veneno2, qtd_veneno3, qtd_veneno4, qtd_veneno5, tanque_veneno, cult, area_app'];'
+

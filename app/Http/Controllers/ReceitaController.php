@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Receita;
 use App\Models\Pessoa;
+use App\Models\PulvVeneno;
+use App\Models\Agrotoxico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -17,18 +19,19 @@ class ReceitaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        {
+    { {
             if ($request->isMethod('post')) {
                 $dados = Receita::where('nome_cliente', 'LIKE', '%' . $request->nome_cliente . '%')->where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();
                 // dd($request->nome_despesa);
-    
+
             } else {
-                $dados = Receita::where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();                
+                $dados = Receita::where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();
                 //$dados = Receita::all();
             }
-    
+
             return view('receita.history', ['dados' => $dados]);
+
+            // return view('receita.history', ['dados' => $dados]);
         }
     }
 
@@ -37,9 +40,9 @@ class ReceitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function mostrar()
     {
-        //
+        return view('receita.insert');
     }
 
     /**
@@ -48,58 +51,56 @@ class ReceitaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function show(Request $request)
     {
-        // $validator = Validator::make($request->all(), []);
 
-        // if ($validator->fails()) {
-        // }
+        // Validação dos dados do formulário
+        $validatedData = $request->validate([
+            'idpessoa' => 'required|exists:pessoas,idpessoa',
+            'tanque_veneno' => 'required',
+            'area_app' => 'required',
+            'cult' => 'required',
+            'agrotoxicos' => 'required|array',
+            'agrotoxicos.*.id' => 'exists:agrotoxicos,idagrotoxico',
+            //'agrotoxicos.*.quantidade' => 'required|numeric',
+        ]);
 
-        // try {
-        //     $receita = new Receita();
-        //     $receita->cliente = $request->nome_cliente;
-        //     $receita->phone = $request->tel_cliente;
-        //     $receita->cult = $request->cult;
-        //     $receita->area_app = $request->area_app;
-        //     $receita->pulv = $request->tanque_veneno;
-        //     $receita->save();
+        // Busca a pessoa cadastrada
+        $pessoa = Pessoa::find($request->idpessoa);
 
-        //     return redirect()->route('site.home');
-        // } catch (\Exception $e) {
-        //     echo $e->getMessage();
-        // };
-    }
+        // Cria uma nova receita e associa a pessoa
+        $receita = new Receita;
+        $receita->idpessoa = $pessoa->idpessoa;
+        $receita->tanque_veneno = $request->tanque_veneno;
+        $receita->area_app = $request->area_app;
+        $receita->cult = $request->cult;
+        //$receita->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Receita  $receita
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Receita $receita)
-    {
-        return view('receita.insert');
+        // Obtém os agrotóxicos do banco de dados
+        $agrotoxicos = Agrotoxico::all();
 
-        $validator = Validator::make($request->all(), []);
-        
-        if ($validator->fails()) {
+        dd($agrotoxicos);
+
+        // Percorre os venenos adicionados
+        foreach ($request->agrotoxicos as $agrotoxico) {
+            $agrotoxico = Agrotoxico::find($agrotoxico['idagrotoxico']);
+
+            // Cria um novo pulv_veneno associado à receita e ao agrotóxico
+            $pulvVeneno = new PulvVeneno;
+            $pulvVeneno->idreceitas = $receita->idreceita;
+            $pulvVeneno->idagrotoxico = $agrotoxico->idagrotoxico;
+            $pulvVeneno->quantidade = $agrotoxico['quantidade'];
+            //$pulvVeneno->save();
         }
+    
 
-        try {
-            $receita = new Receita();
-            $receita->cliente = $request->nome_cliente;
-            $receita->phone = $request->tel_cliente;
-            $receita->cult = $request->cult;
-            $receita->area_app = $request->area_app;
-            $receita->pulv = $request->tanque_veneno;
-            $receita->save();
+        // Redireciona para uma página de sucesso ou exibição dos dados salvos
+        //return view('receita.insertveneno', ['agrotoxicos' => $agrotoxicos]);
 
-            return redirect()->route('receita.insertveneno');
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        };
+
+        //return view('receita.insertveneno', compact('agrotoxicos'));
+
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -109,8 +110,7 @@ class ReceitaController extends Controller
      */
     public function edit(Receita $receita)
     {
-        return view('receita.insertveneno');
-
+        //return view('receita.insertveneno');
     }
 
     /**

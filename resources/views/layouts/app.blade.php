@@ -36,55 +36,55 @@
                     <!-- Left Side Of Navbar -->
                     @if(Auth::check())
                     @if(Auth::user()->leveluser == 1)
-                        <ul class="navbar-nav me-auto">
-                            @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('produtor.history')}}">Histórico de despesas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('produtor.index')}}">Gerar nova despesa</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
-                            </li>
-                            @endauth
-                        </ul>
-                        @endif
-                    
-                        @if(Auth::user()->leveluser == 2)
-                        <ul class="navbar-nav me-auto">
-                            @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('receita.show')}}">Gerar nova pulverização</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('pessoa.insertpessoa')}}">Cadastrar novo cliente</a>
-                            </li>
-                            @endauth
-                        </ul>
-                        @endif
+                    <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('produtor.history')}}">Histórico de despesas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('produtor.index')}}">Gerar nova despesa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
 
-                        @if(Auth::user()->leveluser == 3)
-                        <ul class="navbar-nav me-auto">
-                            @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('lojista.index')}}">Cadastro de produtos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('lojista.history')}}">Consultar produtos cadastrados</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Verificar cotações</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>
-                            </li>
-                            @endauth
-                        </ul>
-                        @endif
+                    @if(Auth::user()->leveluser == 2)
+                    <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('receita.insert')}}">Gerar nova pulverização</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('pessoa.insertpessoa')}}">Cadastrar novo cliente</a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
+
+                    @if(Auth::user()->leveluser == 3)
+                    <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('lojista.index')}}">Cadastro de produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('lojista.history')}}">Consultar produtos cadastrados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Verificar cotações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
 
                     @endif
 
@@ -111,7 +111,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                     Sair
                                 </a>
 

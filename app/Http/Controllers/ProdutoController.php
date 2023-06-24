@@ -28,7 +28,7 @@ class ProdutoController extends Controller
     public function show(Request $request)
     {
         if ($request->isMethod('post')) {
-            $produtos = Produto::where('nome_produto', 'LIKE', '%' . $request->id . '%')->get();
+            $produtos = Produto::where('nome_produto', 'LIKE', '%' . $request->nome_produto . '%')->get();
 
         } else {
             $produtos = Produto::all();                

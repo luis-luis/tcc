@@ -32,10 +32,11 @@
     </div>
     @foreach($produtos as $produto)
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Cliente: <b>{{$produto->marca_produto}} </li>
-            <li class="list-group-item"><b>Telefone: <b>{{$produto->nome_produto}} </li>
-            <li class="list-group-item"><b>Tamanho do tanque veneno: <b>{{$produto->descricao_produto}} </li>
-            <li class="list-group-item"><b>Data do registro: <b>{{$produto->valor_produto}} </li>
+            <li class="list-group-item"><b>Marca: <b>{{$produto->marca_produto}} </li>
+            <li class="list-group-item"><b>Nome: <b>{{$produto->nome_produto}} </li>
+            <li class="list-group-item"><b>Descrição: <b>{{$produto->descricao_produto}} </li>
+            <li class="list-group-item"><b>Valor: <b>{{$produto->valor_produto}} </li>
+            <br>
         </ul>
     @endforeach
 

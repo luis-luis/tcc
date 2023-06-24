@@ -28,9 +28,11 @@ Route::get('/', [HomeController::class, 'index'])->name('site.home');
 
 Route::any('/receita', [ReceitaController::class, 'index'])->name('receita.history');
 
-Route::any('/showreceita', [ReceitaController::class, 'show'])->name('receita.show');
+Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita.insert');
 
-Route::any('/insertveneno', [ReceitaController::class, 'edit'])->name('receita.insertveneno');
+Route::any('/receita/showreceita', [ReceitaController::class, 'show'])->name('receita.insertveneno');
+
+//Route::any('/insertveneno', [ReceitaController::class, 'edit'])->name('receita.insertveneno');
 
 Auth::routes();
 
@@ -50,7 +52,7 @@ Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produ
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
 
-Route::get('/produtohistorico', [ProdutoController::class, 'show'])->name('lojista.history');
+Route::any('/produtohistorico', [ProdutoController::class, 'show'])->name('lojista.history');
 
 Route::post('/insertproduto', [ProdutoController::class, 'store'])->name('lojista.insertproduto');
 

@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pessoa extends Model
+class Agrotoxico extends Model
 {
     use HasFactory;
-    
+
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $table = 'agrotoxicos';
 
-    public function receita()
+    public function pulvVenenos()
 {
-    return $this->belongsTo(Receita::class);
+    return $this->hasMany(PulvVeneno::class);
 }
 
 }
