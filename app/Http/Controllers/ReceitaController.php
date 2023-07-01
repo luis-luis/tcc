@@ -21,11 +21,11 @@ class ReceitaController extends Controller
     public function index(Request $request)
     { {
             if ($request->isMethod('post')) {
-                $dados = Receita::where('nome_cliente', 'LIKE', '%' . $request->nome_cliente . '%')->where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();
+                $dados = Receita::where('nome_pessoa', 'LIKE', '%' . $request->nome_pessoa . '%')->where('nome_pessoa', 'LIKE', '%' . Auth::user()->name . '%')->get();
                 // dd($request->nome_despesa);
 
             } else {
-                $dados = Receita::where('nome_cliente', 'LIKE', '%' . Auth::user()->name . '%')->get();
+                $dados = Receita::where('nome_pessoa', 'LIKE', '%' . Auth::user()->name . '%')->get();
                 //$dados = Receita::all();
             }
 
@@ -35,104 +35,89 @@ class ReceitaController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function mostrar()
     {
-        return view('receita.insert');
+        $pessoas = Pessoa::all();
+        return view('receita.insert', compact('pessoas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Request $request)
     {
-
-        // Validação dos dados do formulário
-        $validatedData = $request->validate([
-            'idpessoa' => 'required|exists:pessoas,idpessoa',
-            'tanque_veneno' => 'required',
-            'area_app' => 'required',
-            'cult' => 'required',
-            'agrotoxicos' => 'required|array',
-            'agrotoxicos.*.id' => 'exists:agrotoxicos,idagrotoxico',
-            //'agrotoxicos.*.quantidade' => 'required|numeric',
-        ]);
-
         // Busca a pessoa cadastrada
-        $pessoa = Pessoa::find($request->idpessoa);
+        $pessoas = Pessoa::all();
+
+        //dd($request);
 
         // Cria uma nova receita e associa a pessoa
         $receita = new Receita;
-        $receita->idpessoa = $pessoa->idpessoa;
+        $receita->codpessoa = $request->idpessoa;
         $receita->tanque_veneno = $request->tanque_veneno;
         $receita->area_app = $request->area_app;
         $receita->cult = $request->cult;
-        //$receita->save();
+        $receita->save();
 
         // Obtém os agrotóxicos do banco de dados
         $agrotoxicos = Agrotoxico::all();
 
-        dd($agrotoxicos);
+        if (!empty($request->agrotoxicos) && is_array($request->agrotoxicos)) {
 
-        // Percorre os venenos adicionados
-        foreach ($request->agrotoxicos as $agrotoxico) {
-            $agrotoxico = Agrotoxico::find($agrotoxico['idagrotoxico']);
+            // Percorre os venenos adicionados
+            foreach ($request->agrotoxicos as $agrotoxico) {
+                $agrotoxico = Agrotoxico::find($agrotoxico->idagrotoxico);
 
-            // Cria um novo pulv_veneno associado à receita e ao agrotóxico
-            $pulvVeneno = new PulvVeneno;
-            $pulvVeneno->idreceitas = $receita->idreceita;
-            $pulvVeneno->idagrotoxico = $agrotoxico->idagrotoxico;
-            $pulvVeneno->quantidade = $agrotoxico['quantidade'];
-            //$pulvVeneno->save();
+                // Cria um novo pulvveneno associado à receita e ao agrotóxico
+                $pulvVeneno = new PulvVeneno;
+                $pulvVeneno->codreceita = $receita->idreceita;
+                $pulvVeneno->codagrotoxico = $agrotoxico->idagrotoxico;
+                $pulvVeneno->qtd_veneno = $agrotoxico['quantidade'];
+                $pulvVeneno->save();
+            }
         }
-    
+
+        //dd($agrotoxicos);
 
         // Redireciona para uma página de sucesso ou exibição dos dados salvos
-        //return view('receita.insertveneno', ['agrotoxicos' => $agrotoxicos]);
 
-
-        //return view('receita.insertveneno', compact('agrotoxicos'));
-
+        return view('receita.insertveneno', compact('agrotoxicos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Receita  $receita
-     * @return \Illuminate\Http\Response
-     */
+    public function pulvveneno(Receita $receita, Agrotoxico $agrotoxico)
+    {
+
+        // Cria um novo pulvveneno associado à receita e ao agrotóxico
+        $pulvVeneno = new PulvVeneno;
+        $pulvVeneno->codreceita = $receita->idreceita;
+        $pulvVeneno->codagrotoxico = $agrotoxico->idagrotoxico;
+        $pulvVeneno->qtd_veneno = $agrotoxico['quantidade'];
+        $pulvVeneno->save();
+    }
+
     public function edit(Receita $receita)
     {
-        //return view('receita.insertveneno');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Receita  $receita
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Receita $receita)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Receita  $receita
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Receita $receita)
     {
         //
     }
 }
+
+
+        // Validação dos dados do formulário
+        // $validatedData = $request->validate([
+        //     'idpessoa' => 'required|exists:pessoas,idpessoa',
+        //     'tanque_veneno' => 'required',
+        //     'area_app' => 'required',
+        //     'cult' => 'required',
+        //     'agrotoxicos' => 'required|array',
+        //     'agrotoxicos.*.id' => 'exists:agrotoxicos,idagrotoxico',
+        //     //'agrotoxicos.*.quantidade' => 'required|numeric',
+        // ]);

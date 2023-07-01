@@ -13,13 +13,18 @@
     <div class="container py-3">
         @csrf
         <div class="mb-3">
-            <label class="form-label">Nome do Agricultor</label>
-            <input type="text" class="form-control" id="cliente" name="cliente">
+        <label for="agrotoxico">Agricultor</label>
+        <select name="idpessoa" class="form-control">
+                    <option value="" selected disabled>Selecione o Agricultor</option>
+                    @foreach ($pessoas as $pessoa)
+                    <option value="{{ $pessoa->idpessoa }}">{{ $pessoa->nome_pessoa }}</option>
+                    @endforeach 
+                </select>
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="phone">Qual o telefone do agricultor?</label>
             <input type="tel" class="form-control" id="phone" name="phone" maxlength="15" placeholder="(99)99999-9999">
-        </div>
+        </div> -->
         <div class="mb-3">
             <label class="form-label">Qual a cultura onde será aplicada?</label>
             <input type="text" class="form-control" id="cult" name="cult">
@@ -30,7 +35,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Tamanho do tanque de pulverização (em litros)</label>
-            <input type="number" class="form-control" id="pulv" name="pulv">
+            <input type="number" class="form-control" id="tanque_veneno" name="tanque_veneno">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Avançar</button>

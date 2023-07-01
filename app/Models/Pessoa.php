@@ -11,7 +11,7 @@ class Pessoa extends Model
     
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'idpessoa';
 
     public function receita()
 {

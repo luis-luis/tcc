@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<form method="post" action="">
+<form method="post" action="{{route('receita.insert')}}">
     @csrf
 
     <div class="container py-3">
@@ -25,19 +25,19 @@
             </div>
             <div class="col-5 mb-3">
                 <label class="form-label">Quantidade de veneno (em litros)</label>
-                <input type="number" class="form-control" id="qtdv" name="quantidades[]">
+                <input type="number" class="form-control" id="quantidade" name="quantidades[]">
             </div>
         </div>
 
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
-            <a href="{{ route('receita.show') }}" type="button" class="btn btn-primary col-1 ml-1">
+            <a href="{{ route('receita.insert') }}" type="button" class="btn btn-primary col-1 ml-1">
                 Voltar
             </a>
             <button id="btnAdicionarVeneno" type="button" class="btn btn-danger col-1 ml-1">Adicionar veneno</button>
         </div>
 
-        <!-- <script>
+        <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Obtém o botão "Adicionar Veneno"
             var btnAdicionarVeneno = document.getElementById('btnAdicionarVeneno');
@@ -73,7 +73,7 @@
                 container.appendChild(divVeneno);
             });
         });
-    </script> -->
+    </script>
 </form>
 
 @endsection
