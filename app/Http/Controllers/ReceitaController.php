@@ -44,12 +44,12 @@ class ReceitaController extends Controller
 
     public function show(Request $request)
     {
-        // Busca a pessoa cadastrada
+
         $pessoas = Pessoa::all();
 
         //dd($request);
 
-        // Cria uma nova receita e associa a pessoa
+
         $receita = new Receita;
         $receita->codpessoa = $request->idpessoa;
         $receita->tanque_veneno = $request->tanque_veneno;
@@ -57,41 +57,50 @@ class ReceitaController extends Controller
         $receita->cult = $request->cult;
         $receita->save();
 
-        // Obtém os agrotóxicos do banco de dados
         $agrotoxicos = Agrotoxico::all();
 
         if (!empty($request->agrotoxicos) && is_array($request->agrotoxicos)) {
 
-            // Percorre os venenos adicionados
             foreach ($request->agrotoxicos as $agrotoxico) {
-                $agrotoxico = Agrotoxico::find($agrotoxico->idagrotoxico);
+                // dd($agrotoxico);
+                $agrotoxico = Agrotoxico::where($agrotoxico->idagrotoxico);
 
-                // Cria um novo pulvveneno associado à receita e ao agrotóxico
                 $pulvVeneno = new PulvVeneno;
-                $pulvVeneno->codreceita = $receita->idreceita;
-                $pulvVeneno->codagrotoxico = $agrotoxico->idagrotoxico;
-                $pulvVeneno->qtd_veneno = $agrotoxico['quantidade'];
+                $pulvVeneno->cod_receita = $receita->idreceita;
+                $pulvVeneno->cod_agrotoxico = $agrotoxico->idagrotoxico;
+                dd($pulvVeneno);
+                // $pulvVeneno->qtd_veneno = $request->;
                 $pulvVeneno->save();
             }
         }
 
+        return view('receita.insertveneno', compact('agrotoxicos'));
+
         //dd($agrotoxicos);
 
         // Redireciona para uma página de sucesso ou exibição dos dados salvos
-
-        return view('receita.insertveneno', compact('agrotoxicos'));
     }
 
-    public function pulvveneno(Receita $receita, Agrotoxico $agrotoxico)
-    {
+    // public function insertveneno(Request $request, Receita $receita)
+    // {
+    //     $receita = $request->idreceitas;
+    //     $agrotoxicos = $request->agrotoxicos;
+    //     $quantidades = $request->quantidades;
+    //     if ($agrotoxicos !== null && $quantidades !== null && count($agrotoxicos) === count($quantidades)) {
+    //         if (count($agrotoxicos) === count($quantidades)) {
+    //             for ($i = 0; $i < count($agrotoxicos); $i++) {
+    //                 $pulvVeneno = new PulvVeneno;
+    //                 $pulvVeneno->cod_receita = $receita->idreceitas;
+    //                 $pulvVeneno->cod_agrotoxico = $agrotoxicos[$i];
+    //                 $pulvVeneno->qtd_veneno = $quantidades[$i];
+    //                 $pulvVeneno->save();
+    //             }
+    //         }
+    //     }
+    // }
 
-        // Cria um novo pulvveneno associado à receita e ao agrotóxico
-        $pulvVeneno = new PulvVeneno;
-        $pulvVeneno->codreceita = $receita->idreceita;
-        $pulvVeneno->codagrotoxico = $agrotoxico->idagrotoxico;
-        $pulvVeneno->qtd_veneno = $agrotoxico['quantidade'];
-        $pulvVeneno->save();
-    }
+    //     return redirect()->route('receita.insertveneno')->with('success', 'Pulverização de agrotóxicos registrada com sucesso.');
+    // }
 
     public function edit(Receita $receita)
     {

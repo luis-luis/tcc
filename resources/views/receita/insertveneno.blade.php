@@ -9,14 +9,14 @@
     </div>
 </div>
 
-<form method="post" action="{{route('receita.insert')}}">
+<form method="post" action="{{route('receita.insertveneno')}}">
     @csrf
 
     <div class="container py-3">
         <div id="camposVeneno">
             <div class="mb-3">
                 <label for="agrotoxico">Veneno a ser utilizado:</label>
-                <select name="agrotoxicos[]" class="form-control">
+                <select name="agrotoxicos[][idagrotoxico]" class="form-control">
                     <option value="" selected disabled>Selecione o veneno</option>
                     @foreach ($agrotoxicos as $agrotoxico)
                     <option value="{{ $agrotoxico->idagrotoxico }}">{{ $agrotoxico->nome_agrotoxico }}</option>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-5 mb-3">
                 <label class="form-label">Quantidade de veneno (em litros)</label>
-                <input type="number" class="form-control" id="quantidade" name="quantidades[]">
+                <input type="number" class="form-control" id="quantidade" name="quantidade[]">
             </div>
         </div>
 

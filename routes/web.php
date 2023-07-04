@@ -32,9 +32,11 @@ Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita
 
 //Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
 
-Route::get('/receitashow', [ReceitaController::class, 'show'])->name('receita.show');
+//Route::get('/receitashow', [ReceitaController::class, 'show'])->name('receita.show');
 
 Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
+
+//Route::any('/saveveneno', [ReceitaController::class, 'insertveneno'])->name('receita.saveveneno');
 
 Auth::routes();
 
