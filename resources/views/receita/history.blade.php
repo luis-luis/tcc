@@ -7,7 +7,7 @@
         <p class="lead" text->Consulte suas pulverizações anteriores</p>
     </div>
 </div>
-<form method="post" action="">
+<form method="post" action="{{route('receita.history')}}">
     <div class="container py-3">
         @csrf
         <div class="mb-3">
@@ -30,12 +30,14 @@
     </div>
     @foreach($dados as $pulv)
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Cliente: <b>{{$pulv->nome_cliente}} </li>
-            <li class="list-group-item"><b>Telefone: <b>{{$pulv->tel_cliente}} </li>
+            <li class="list-group-item"><b>Cliente: <b>{{$pulv->nome_pessoa}} </li>
+            <li class="list-group-item"><b>Telefone: <b>{{$pulv->tel_pessoa}} </li>
             <li class="list-group-item"><b>Tamanho do tanque veneno: <b>{{$pulv->tanque_veneno}} </li>
             <li class="list-group-item"><b>Data do registro: <b>{{$pulv->data_receita}} </li>
             <li class="list-group-item"><b>Tamanho da área de aplicacao: <b>{{$pulv->area_app}} </li>
             <li class="list-group-item"><b>Cultura aplicada: <b>{{$pulv->cult}} </li>
+            <li class="list-group-item"><b>Agrotoxicos aplicados: <b>{{$pulv->nome_agrotoxico}} </li>
+            <li class="list-group-item"><b>Quantidade de agrotóxicos aplicada: <b>{{$pulv->qtd_veneno}} </li>
             <br>
         </ul>
     @endforeach

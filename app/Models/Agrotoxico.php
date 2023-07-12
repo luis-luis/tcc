@@ -13,6 +13,8 @@ class Agrotoxico extends Model
 
     protected $table = 'agrotoxicos';
 
+    protected $primaryKey = 'idagrotoxico';
+
     public function pulvVenenos()
 {
     return $this->hasMany(PulvVeneno::class);

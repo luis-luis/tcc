@@ -25,7 +25,7 @@
             </div>
             <div class="col-5 mb-3">
                 <label class="form-label">Quantidade de veneno (em litros)</label>
-                <input type="number" class="form-control" id="quantidade" name="quantidade[]">
+                <input type="number" class="form-control" id="quantidade" name="quantidade">
             </div>
         </div>
 
@@ -36,44 +36,7 @@
             </a>
             <button id="btnAdicionarVeneno" type="button" class="btn btn-danger col-1 ml-1">Adicionar veneno</button>
         </div>
-
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Obtém o botão "Adicionar Veneno"
-            var btnAdicionarVeneno = document.getElementById('btnAdicionarVeneno');
-
-            // Adiciona um ouvinte de evento de clique ao botão
-            btnAdicionarVeneno.addEventListener('click', function() {
-                // Obtém o elemento pai dos campos de veneno
-                var container = document.getElementById('camposVeneno');
-
-                // Cria os elementos dos campos de veneno
-                var divVeneno = document.createElement('div');
-                var selectVeneno = document.createElement('select');
-                var inputQuantidade = document.createElement('input');
-
-                // Define os atributos dos elementos
-                selectVeneno.name = 'agrotoxicos[]';
-                selectVeneno.className = 'form-control';
-                inputQuantidade.type = 'number';
-                inputQuantidade.name = 'quantidades[]';
-                inputQuantidade.className = 'form-control';
-
-                // Cria a opção padrão
-                var option = document.createElement('option');
-                option.value = '';
-                option.disabled = true;
-                option.selected = true;
-                option.textContent = 'Selecione o veneno';
-                selectVeneno.appendChild(option);
-
-                // Adiciona os elementos ao elemento pai
-                divVeneno.appendChild(selectVeneno);
-                divVeneno.appendChild(inputQuantidade);
-                container.appendChild(divVeneno);
-            });
-        });
-    </script>
 </form>
 
 @endsection
+
