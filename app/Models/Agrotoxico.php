@@ -17,7 +17,7 @@ class Agrotoxico extends Model
 
     public function pulvVenenos()
 {
-    return $this->hasMany(PulvVeneno::class);
+    return $this->hasMany(PulvVeneno::class, 'cod_agrotoxico', 'idagrotoxico');
 }
 
 }

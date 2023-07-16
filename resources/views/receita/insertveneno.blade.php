@@ -9,9 +9,8 @@
     </div>
 </div>
 
-<form method="post" action="{{route('receita.insertveneno')}}">
+<form method="post" action="{{route('receita.saveveneno')}}">
     @csrf
-
     <div class="container py-3">
         <div id="camposVeneno">
             <div class="mb-3">
@@ -28,7 +27,6 @@
                 <input type="number" class="form-control" id="quantidade" name="quantidade">
             </div>
         </div>
-
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
             <a href="{{ route('receita.insert') }}" type="button" class="btn btn-primary col-1 ml-1">

@@ -18,4 +18,10 @@ class Pessoa extends Model
     return $this->belongsTo(Receita::class);
 }
 
+public function receitas()
+{
+    return $this->hasMany(Receita::class, 'codpessoa', 'idpessoa');
+}
+
+
 }

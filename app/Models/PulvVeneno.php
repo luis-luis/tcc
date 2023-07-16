@@ -15,13 +15,16 @@ class PulvVeneno extends Model
 
     public function receita()
 {
-    return $this->belongsTo(Receita::class);
+    return $this->belongsTo(Receita::class, 'cod_receita', 'idreceitas');
+
 }
 
 public function agrotoxico()
 {
-    return $this->belongsTo(Agrotoxico::class);
+    return $this->belongsTo(Agrotoxico::class, 'cod_agrotoxico', 'idagrotoxico');
 }
+
+
 
 
 }

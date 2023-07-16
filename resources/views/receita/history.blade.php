@@ -7,7 +7,7 @@
         <p class="lead" text->Consulte suas pulverizações anteriores</p>
     </div>
 </div>
-<form method="post" action="{{route('receita.history')}}">
+<form method="post" action="">
     <div class="container py-3">
         @csrf
         <div class="mb-3">

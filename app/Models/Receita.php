@@ -18,6 +18,17 @@ class Receita extends Model
     return $this->hasMany(PulvVeneno::class);
 }
 
+public function pessoa()
+{
+    return $this->belongsTo(Pessoa::class, 'codpessoa', 'idpessoa');
+}
+
+public function pulvVeneno()
+{
+    return $this->hasMany(PulvVeneno::class, 'cod_receita', 'idreceitas');
+}
+
+
 }
     //protected $fillable = ['nome_cliente, tel_cliente, nome_veneno, nome_veneno2, nome_veneno3, nome_veneno4, nome_veneno5,qtd_veneno, qtd_veneno2, qtd_veneno3, qtd_veneno4, qtd_veneno5, tanque_veneno, cult, area_app'];'
 

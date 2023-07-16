@@ -36,6 +36,8 @@ Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita
 
 Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
 
+Route::any('/saveveneno', [ReceitaController::class, 'showveneno'])->name('receita.saveveneno');
+
 //Route::any('/saveveneno', [ReceitaController::class, 'insertveneno'])->name('receita.saveveneno');
 
 Auth::routes();
