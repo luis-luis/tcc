@@ -15,7 +15,7 @@
             <input type="text" class="form-control" id="nome_cliente" name="nome_cliente">
         </div>
         <button type="submit" class="btn btn-success col-1 ml-1">Pesquisar</button>
-        <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">
+        <a href="{{route('receita.history')}}" type="button" class="btn btn-primary col-1 ml-1">
             Voltar
         </a>
     </div>
@@ -30,6 +30,7 @@
     </div>
     @foreach($dados as $pulv)
         <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Id receita: <b>{{$pulv->idreceitas}} </li>
             <li class="list-group-item"><b>Cliente: <b>{{$pulv->nome_pessoa}} </li>
             <li class="list-group-item"><b>Telefone: <b>{{$pulv->tel_pessoa}} </li>
             <li class="list-group-item"><b>Tamanho do tanque veneno: <b>{{$pulv->tanque_veneno}} </li>

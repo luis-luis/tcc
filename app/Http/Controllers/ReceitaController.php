@@ -21,42 +21,23 @@ class ReceitaController extends Controller
      */
     public function index(Request $request)
     {
-        // {
-        //     if ($request->isMethod('post')) {
-        //         $dados = Receita::where('idreceitas', 'LIKE', '%' . $request->idreceitas . '%')->where('nome_pessoa', 'LIKE', '%' . Auth::user()->name . '%')->get();
 
-        //     } else {
-        //         $dados = Receita::where('idreceitas', 'LIKE', '%' . Auth::user()->name . '%')->get();
-        //         //$dados = Receita::all();
-        //     }
-        //     $dados = Receita::all();
-        //     //$dados = Pessoa::all();
-        //     // $dados = PulvVeneno::all();
-        //     // $dados = Agrotoxico::all();
-        //     return view('receita.history', compact('dados'));
-        // //}
-
-        // {
-        //     if ($request->isMethod('post')) {
-        //         $dados = Receita::where('codpessoa', Auth::id())->get();
-        //     } else {
-        //         $dados = Receita::where('idreceitas', Auth::id())->get();
-        //     }
-
-        //     return view('receita.history', ['dados' => $dados]);
-        // }
 
         // Recupera o ID do usuário agrônomo logado
         $userId = Auth::id();
 
         // Recupera as informações desejadas do banco de dados
-        $dados = Pessoa::select('pessoas.nome_pessoa', 'pessoas.tel_pessoa', 'receitas.tanque_veneno', 'receitas.data_receita',
-         'receitas.area_app', 'receitas.cult', 'agrotoxicos.nome_agrotoxico', 'pulv_venenos.qtd_veneno')
-            ->join('receitas', 'pessoas.idpessoa', '=', 'receitas.codpessoa')
+        $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
             ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
             ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
-            ->where('pessoas.user_id', $userId)
+            ->where('receitas.coduser', $userId)
             ->get();
+
+        if ($request->isMethod('post')) {
+            $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
+            ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
+            ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')->where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
+        }
 
         return view('receita.history', compact('dados'));
     }
@@ -76,6 +57,7 @@ class ReceitaController extends Controller
         $receita->tanque_veneno = $request->tanque_veneno;
         $receita->area_app = $request->area_app;
         $receita->cult = $request->cult;
+        $receita->data_receita = now();
         $userId = Auth::user()->id;
         $receita->coduser = $userId;
         $receita->save();
