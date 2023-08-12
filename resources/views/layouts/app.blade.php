@@ -47,6 +47,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Solicitar cotação</a>
+                        </li>
                         @endauth
                     </ul>
                     @endif
