@@ -7,12 +7,13 @@
     <div class="row">
         <div class="col-md-7">
             <h2 class="featurette-heading">Agronote</h2>
-            <p class="lead">Solicite os produtos</p>
+            <p class="lead">Abaixo a lista dos produtos solicitados</p>
         </div>
     </div>
-    <form action="{{route('produtor.cotacaoinsert')}}">
+    <form action="teste123">
         <div class="row">
             <div class="col-md-7">
+
                 <table class="table table-striped">
                     <thead>
                         <tr>

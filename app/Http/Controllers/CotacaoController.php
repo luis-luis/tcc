@@ -19,7 +19,8 @@ class CotacaoController extends Controller
 
     public function index()
     {
-        //
+        $produtos = Produto::all();
+        return view('produtor.cotacao', compact('produtos'));
     }
 
     public function create()
@@ -36,15 +37,19 @@ class CotacaoController extends Controller
         $cotacao->id = $request->idproduto;
         $userId = Auth::user()->id;
         $cotacao->cod_user = $userId;
-        
+        $cotacao->qtd_produto = $request->qtd_produto;
 
-        return view('produtor.cotacao');
+        dd($cotacao);
+        // dd($request->produto);
+        
+        $cotacao->save();
+
+        
     }
 
-    public function show(Request $request, Cotacao $cotacao)
+    public function show()
     {
-        $produtos = Produto::all();
-        return view('produtor.cotacao', compact('produtos'));
+        return view('produtor.mostrarcotacao');
     }
 
     public function edit(cotacao $cotacao)
