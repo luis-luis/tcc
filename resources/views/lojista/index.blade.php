@@ -28,6 +28,10 @@
             <label for="phone">Valor do produto</label>
             <input type="number" class="form-control" id="valor_produto" name="valor_produto">
         </div>
+        <div class="mb-3">
+            <label for="phone">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto">
+        </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
             <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">

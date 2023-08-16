@@ -61,6 +61,7 @@ class ProdutoController extends Controller
         $produto->nome_produto = $request->nome_produto;
         $produto->descricao_produto = $request->descricao_produto;
         $produto->valor_produto = $request->valor_produto;
+        $produto->qtd_produto = $request->quantidade_produto;
         $produto->save();
     
         // Redirecionamento para uma página de sucesso ou exibição dos dados salvos

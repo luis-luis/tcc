@@ -48,7 +48,7 @@
                             <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Solicitar cotação</a>
+                            <a class="nav-link" href="{{route('produtor.cotacao')}}">Solicitar cotação</a>
                         </li>
                         @endauth
                     </ul>
@@ -80,7 +80,7 @@
                             <a class="nav-link" href="{{route('lojista.history')}}">Consultar produtos cadastrados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Verificar cotações</a>
+                            <a class="nav-link" href="">Verificar solicitações de produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>

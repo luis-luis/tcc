@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CotacaoController;
 use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
@@ -55,6 +56,8 @@ Route::get('/despesa', [DespesaController::class, 'index'])->name('produtor.inde
 Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('produtor.insert');
 
 Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
+
+Route::any('/produtor/cotacao/insert', [CotacaoController::class, 'show'])->name('produtor.cotacao');
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
 
