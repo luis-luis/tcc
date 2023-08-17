@@ -4,7 +4,7 @@
 <div class="container">
     <div class="col-md-7">
         <h2 class="featurette-heading">Agronote</h2>
-        <p class="lead" text->Consulte suas pulverizações anteriores</p>
+        <p class="lead" text->Consulte suas pulverizações</p>
     </div>
 </div>
 <form method="post" action="">

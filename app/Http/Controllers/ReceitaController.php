@@ -21,8 +21,6 @@ class ReceitaController extends Controller
      */
     public function index(Request $request)
     {
-
-
         // Recupera o ID do usuário agrônomo logado
         $userId = Auth::id();
 

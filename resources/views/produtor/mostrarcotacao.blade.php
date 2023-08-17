@@ -7,13 +7,12 @@
     <div class="row">
         <div class="col-md-7">
             <h2 class="featurette-heading">Agronote</h2>
-            <p class="lead">Abaixo a lista dos produtos solicitados</p>
+            <p class="lead">Consulte os produtos solicitados</p>
         </div>
     </div>
     <form action="teste123">
         <div class="row">
             <div class="col-md-7">
-
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -25,15 +24,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($produtos as $produto)
+                        @foreach ($dados as $cotacao)
                         <tr>
-                            <th scope="row" name="idproduto">{{ $produto->id }}</th>
-                            <td name="nome_produto">{{ $produto->nome_produto }}</td>
-                            <td name="valor_produto">{{ $produto->valor_produto }}</td>
-                            <td name="qtd_produto">{{ $produto->qtd_produto }}</td>
-                            <th>
-                                <input type="number" name="produto[{{$produto->id}}]">
-                            </th>
+                            <th scope="row" name="idproduto">{{ $cotacao->id }}</th>
+                            <td name="nome_produto">{{ $cotacao->nome_produto }}</td>
+                            <td name="valor_produto">{{ $cotacao->valor_produto }}</td>
+                            <td name="qtd_produto">{{ $cotacao->qtd_produto }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -49,7 +45,6 @@
                     Voltar
                 </a>
             </div>
-
         </div>
     </form>
 </div>

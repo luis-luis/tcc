@@ -31,25 +31,29 @@ class CotacaoController extends Controller
     public function store(Request $request, Cotacao $cotacao)
     {
 
-        $userId = Auth::id();
-
-        $cotacao = new Cotacao;
-        $cotacao->id = $request->idproduto;
         $userId = Auth::user()->id;
-        $cotacao->cod_user = $userId;
-        $cotacao->qtd_produto = $request->qtd_produto;
 
-        dd($cotacao);
-        // dd($request->produto);
-        
-        $cotacao->save();
+        foreach ($request->produto as $produtoId => $quantidade) {
+            $cotacao = new Cotacao;
+            $cotacao->cod_produto = $produtoId; 
+            $cotacao->cod_user = $userId;
+            $cotacao->qtd_produto = $quantidade;
 
-        
+            // dd($cotacao);
+
+            // $cotacao->save();
+        }
+
+        return view('produtor.mostrarcotacao');
     }
 
-    public function show()
+    public function show(Request $request)
     {
+
+        // $dados - Cotacao::all();
+
         return view('produtor.mostrarcotacao');
+
     }
 
     public function edit(cotacao $cotacao)
@@ -67,3 +71,18 @@ class CotacaoController extends Controller
         //
     }
 }
+
+
+
+// $userId = Auth::id();
+
+// $cotacao = new Cotacao;
+// $cotacao->cod_produto = $request->idproduto;
+// $userId = Auth::user()->id;
+// $cotacao->cod_user = $userId;
+// $cotacao->qtd_produto = $request->produto;
+
+// dd($cotacao);
+// // dd($request->produto);
+
+// $cotacao->save();

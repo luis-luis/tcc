@@ -27,6 +27,8 @@ use App\Http\Controllers\RegistrationController;
 
 Route::get('/', [HomeController::class, 'index'])->name('site.home');
 
+// pulverizacao //
+
 Route::any('/receita', [ReceitaController::class, 'index'])->name('receita.history');
 
 Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita.insert');
@@ -41,6 +43,8 @@ Route::any('/saveveneno', [ReceitaController::class, 'showveneno'])->name('recei
 
 //Route::any('/saveveneno', [ReceitaController::class, 'insertveneno'])->name('receita.saveveneno');
 
+// pulverizacao //
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -51,15 +55,25 @@ Route::get('/registro', [RegistrationController::class, 'create'])->name('regist
 
 Route::post('registro', [RegistrationController::class, 'store']);
 
+// produtor //
+
 Route::get('/despesa', [DespesaController::class, 'index'])->name('produtor.index');
 
 Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('produtor.insert');
 
 Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
 
+// produtor //
+
+// cotacao //
+
 Route::any('/produtor/cotacao', [CotacaoController::class, 'index'])->name('produtor.cotacao');
 
 Route::any('/produtor/cotacao/insert', [CotacaoController::class, 'store'])->name('produtor.cotacaoinsert');
+
+// cotacao //
+
+// lojista //
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index');
 
@@ -67,6 +81,12 @@ Route::any('/produtohistorico', [ProdutoController::class, 'show'])->name('lojis
 
 Route::post('/insertproduto', [ProdutoController::class, 'store'])->name('lojista.insertproduto');
 
+// lojista //
+
+// pessoa //
+
 Route::get('/pessoa', [PessoaController::class, 'pessoa'])->name('pessoa.insertpessoa');
 
 Route::post('/pessoa/insert', [PessoaController::class, 'create'])->name('pessoa.insert');
+
+// pessoa //

@@ -26,7 +26,7 @@
                     <tbody>
                         @foreach ($produtos as $produto)
                         <tr>
-                            <th scope="row" name="idproduto">{{ $produto->id }}</th>
+                            <th scope="row" id="idproduto">{{ $produto->id }}</th>
                             <td name="nome_produto">{{ $produto->nome_produto }}</td>
                             <td name="valor_produto">{{ $produto->valor_produto }}</td>
                             <td name="qtd_produto">{{ $produto->qtd_produto }}</td>
