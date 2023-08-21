@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\CotacaoController;
 use App\Http\Controllers\DespesaController;
+use App\Http\Controllers\CotacaoItemController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ReceitaController;
-use App\Http\Controllers\PessoaController; 
+use App\Http\Controllers\PessoaController;
 use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -67,9 +68,11 @@ Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produ
 
 // cotacao //
 
-Route::any('/produtor/cotacao', [CotacaoController::class, 'index'])->name('produtor.cotacao');
+Route::any('/produtor/cotacao', [CotacaoItemController::class, 'index'])->name('produtor.cotacao');
 
-Route::any('/produtor/cotacao/insert', [CotacaoController::class, 'store'])->name('produtor.cotacaoinsert');
+Route::any('/produtor/cotacao/insert', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
+
+Route::any('/produtor/cotacao/show', [CotacaoController::class, 'show'])->name('produtor.mostrarcotacao');
 
 // cotacao //
 

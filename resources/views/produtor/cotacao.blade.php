@@ -13,6 +13,11 @@
     <form action="{{route('produtor.cotacaoinsert')}}">
         <div class="row">
             <div class="col-md-7">
+                @if(session("erro"))
+                <div class="alert alert-danger" role="alert">
+                    {{session("erro")}}
+                </div>
+                @endif
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -28,10 +33,13 @@
                         <tr>
                             <th scope="row" id="idproduto">{{ $produto->id }}</th>
                             <td name="nome_produto">{{ $produto->nome_produto }}</td>
-                            <td name="valor_produto">{{ $produto->valor_produto }}</td>
+                            <td name="valor_produto">R$ {{ $produto->valor_produto }}</td>
                             <td name="qtd_produto">{{ $produto->qtd_produto }}</td>
                             <th>
-                                <input type="number" name="produto[{{$produto->id}}]">
+                                <input type="number" name="produto[{{$produto->id}}]" max="{{$produto->qtd_produto}}" min="0" value="0" maxlength="5">
+                            </th>
+                            <th>
+
                             </th>
                         </tr>
                         @endforeach

@@ -10,7 +10,7 @@
             <p class="lead">Consulte os produtos solicitados</p>
         </div>
     </div>
-    <form action="teste123">
+    <form action="#">
         <div class="row">
             <div class="col-md-7">
                 <table class="table table-striped">
@@ -19,7 +19,6 @@
                             <th scope="col">Cod. Produto</th>
                             <th scope="col">Nome produto</th>
                             <th scope="col">Preço</th>
-                            <th scope="col">Quantidades disponíveis</th>
                             <th scope="col">Quantidade</th>
                         </tr>
                     </thead>

@@ -51,7 +51,7 @@
                             <a class="nav-link" href="{{route('produtor.cotacao')}}">Solicitar cotação</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Consultar cotações</a>
+                            <a class="nav-link" href="{{route('produtor.mostrarcotacao')}}">Consultar cotações</a>
                         </li>
                         @endauth
                     </ul>

@@ -2,87 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
-use App\Models\Cotacao;
-use App\Models\Receita;
-use App\Models\Pessoa;
-use App\Models\PulvVeneno;
-use App\Models\Agrotoxico;
+use App\Models\cotacao;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CotacaoController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $produtos = Produto::all();
-        return view('produtor.cotacao', compact('produtos'));
+        //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         //
     }
 
-    public function store(Request $request, Cotacao $cotacao)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-
-        $userId = Auth::user()->id;
-
-        foreach ($request->produto as $produtoId => $quantidade) {
-            $cotacao = new Cotacao;
-            $cotacao->cod_produto = $produtoId; 
-            $cotacao->cod_user = $userId;
-            $cotacao->qtd_produto = $quantidade;
-
-            // dd($cotacao);
-
-            // $cotacao->save();
-        }
-
-        return view('produtor.mostrarcotacao');
+        //
     }
 
-    public function show(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\cotacao  $cotacao
+     * @return \Illuminate\Http\Response
+     */
+    public function show(cotacao $cotacao)
     {
-
-        // $dados - Cotacao::all();
-
-        return view('produtor.mostrarcotacao');
-
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\cotacao  $cotacao
+     * @return \Illuminate\Http\Response
+     */
     public function edit(cotacao $cotacao)
     {
         //
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\cotacao  $cotacao
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, cotacao $cotacao)
     {
         //
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\cotacao  $cotacao
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(cotacao $cotacao)
     {
         //
     }
 }
-
-
-
-// $userId = Auth::id();
-
-// $cotacao = new Cotacao;
-// $cotacao->cod_produto = $request->idproduto;
-// $userId = Auth::user()->id;
-// $cotacao->cod_user = $userId;
-// $cotacao->qtd_produto = $request->produto;
-
-// dd($cotacao);
-// // dd($request->produto);
-
-// $cotacao->save();
