@@ -66,15 +66,15 @@ Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produ
 
 // produtor //
 
-// cotacao //
+// cotacao produtor//
 
 Route::any('/produtor/cotacao', [CotacaoItemController::class, 'index'])->name('produtor.cotacao');
 
 Route::any('/produtor/cotacao/insert', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
 
-Route::any('/produtor/cotacao/show', [CotacaoController::class, 'show'])->name('produtor.mostrarcotacao');
+Route::any('/produtor/cotacao/show', [CotacaoItemController::class, 'show'])->name('produtor.mostrarcotacao');
 
-// cotacao //
+// cotacao produtor//
 
 // lojista //
 
@@ -83,6 +83,12 @@ Route::get('/produto', [ProdutoController::class, 'index'])->name('lojista.index
 Route::any('/produtohistorico', [ProdutoController::class, 'show'])->name('lojista.history');
 
 Route::post('/insertproduto', [ProdutoController::class, 'store'])->name('lojista.insertproduto');
+
+Route::any('/editproduto/{id}', [ProdutoController::class, 'edit'])->name('lojista.editproduto');
+
+Route::any('/updateproduto/{id}', [ProdutoController::class, 'update'])->name('lojista.updateproduto');
+
+Route::any('/destroyproduto/{id}', [ProdutoController::class, 'destroy'])->name('lojista.destroyproduto');
 
 // lojista //
 

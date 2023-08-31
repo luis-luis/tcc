@@ -12,4 +12,11 @@ class Cotacao extends Model
     public $timestamps = false;
 
     protected $table = 'cotacoes';
+
+    protected $primaryKey = 'idcotacoes';
+
+    public function itens(){
+        return $this->hasMany(CotacaoItem::class, 'cod_cotacao', 'idcotacoes');
+    }
+
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CotacaoItem extends Model
+class BkpCotacaoItem extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class CotacaoItem extends Model
 
     protected $primaryKey = 'idcotacoesitens';
 
-    public function produto(){
-        return $this->belongsTo(Produto::class, 'cod_produto', 'id');
-    }
+    // public function produto(){
+    //     return $this->hasMany('App\Produto', 'id', 'cod_produto');
+    // }
 }

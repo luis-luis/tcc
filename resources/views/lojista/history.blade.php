@@ -5,7 +5,7 @@
 <div class="container">
     <div class="col-md-7">
         <h2 class="featurette-heading">Agronote</h2>
-        <p class="lead" text->Produtos cadastros</p>
+        <p class="lead" text->Produtos cadastrados</p>
     </div>
 </div>
 
@@ -22,24 +22,43 @@
         </a>
     </div>
     </div>
+    <form action="">
+        <div class="container py-3">
+            <div class="mb-3">
+                @if(session("success"))
+                <div class="alert alert-success" role="alert">
+                    {{session("success")}}
+                </div>
+                @endif
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome do produto</th>
+                            <th scope="col">Marca do produto</th>
+                            <th scope="col">Preço produto</th>
+                            <th scope="col">Quantidade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($produtos as $produto)
+                        <tr>
+                            <td scope="row">{{ $produto->nome_produto }}</td>
+                            <td scope="row">{{ $produto->marca_produto }}</td>
+                            <td scope="row">{{ $produto->valor_produto }}</td>
+                            <td scope="row">{{ $produto->qtd_produto }}</td>
+                            <td><a href="{{route('lojista.editproduto', $produto->id)}}" type="button" class="btn btn-warning">Editar produto</a></td>
+                            <td><a href="{{route('lojista.destroyproduto', $produto->id)}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja excluir esse produto?');">Excluir produto</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </form>
 </form>
 
-<!-- Listagem dos produtos-->
-
-    <div class="container py-3">
-    <div class="col-md-7">
-        <p class="lead" text->Produtos</p>
-    </div>
-    @foreach($produtos as $produto)
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Marca: <b>{{$produto->marca_produto}} </li>
-            <li class="list-group-item"><b>Nome: <b>{{$produto->nome_produto}} </li>
-            <li class="list-group-item"><b>Descrição: <b>{{$produto->descricao_produto}} </li>
-            <li class="list-group-item"><b>Valor: <b>{{$produto->valor_produto}} </li>
-            <br>
-        </ul>
-    @endforeach
 
 </div>
 
-    @endsection
+@endsection

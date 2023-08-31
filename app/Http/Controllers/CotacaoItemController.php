@@ -16,6 +16,7 @@ class CotacaoItemController extends Controller
 
     public function index()
     {
+
         $produtos = Produto::all();
         return view('produtor.cotacao', compact('produtos'));
     }
@@ -27,9 +28,13 @@ class CotacaoItemController extends Controller
 
     public function store(Request $request, CotacaoItem $cotacaoItem)
     {
-
         $userId = Auth::user()->id;
+        $cotacao = new Cotacao;
+        $cotacao->cod_user = $userId;
+        $cotacao->valor_cotacao = 0;
+        $cotacao->save();
         $x = 0;
+        // dd($cotacao);
         foreach ($request->produto as $produtoId => $quantidade) {
 
             $produto = Produto::find($produtoId);
@@ -42,8 +47,10 @@ class CotacaoItemController extends Controller
                 $cotacaoItem = new CotacaoItem;
                 $cotacaoItem->cod_produto = $produtoId;
                 $cotacaoItem->qtd_produto = $quantidade;
-
-                //$cotacaoItem->save();
+                $cotacaoItem->cod_cotacao = $cotacao->idcotacoes;
+                $cotacao->valor_cotacao += $produto->valor_produto*$quantidade;
+                $cotacaoItem->save();
+                $cotacao->save();
 
                 $produto->qtd_produto -= $quantidade;
                 $produto->save();
@@ -57,19 +64,20 @@ class CotacaoItemController extends Controller
             // dd($cotacao);
         }      
         if($x == 0){
+            $cotacao->delete();
             $message = "A quantidade solicitada é maior que a quantidade em estoque ou não há produtos em estoque";
 
             return redirect(route('produtor.cotacao'))->with('erro', $message);
         }
 
-        return view('produtor.mostrarcotacao');
+        return redirect(route('produtor.mostrarcotacao',['idcotacoes'=>$cotacao->idcotacoes]));
     }
 
     public function show(Request $request)
     {
 
-        $dados = Cotacao::all();
-
+        $dados = Cotacao::with(['itens'])->where('cod_user', '=', Auth::user()->id)->get();
+// dd($dados[5]);
         return view('produtor.mostrarcotacao', compact('dados'));
     }
 
