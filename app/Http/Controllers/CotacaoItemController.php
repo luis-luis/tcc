@@ -73,10 +73,19 @@ class CotacaoItemController extends Controller
         return redirect(route('produtor.mostrarcotacao',['idcotacoes'=>$cotacao->idcotacoes]));
     }
 
+
+    /*Função show:
+    começando debaixo para cima: 
+    withTrashed(); -> traz os produto excluidos para dentro de 'produto=>function...'
+    que retorna para dentro de 'itens=>function', que está dentro de uma cotação, pertencente a variável $dados;
+    */
     public function show(Request $request)
     {
-
-        $dados = Cotacao::with(['itens'])->where('cod_user', '=', Auth::user()->id)->get();
+        $dados = Cotacao::with(['itens'=>function($q){
+            return $q->with(['produto'=>function($q){
+                return $q->withTrashed();
+            }]);
+        }])->where('cod_user', '=', Auth::user()->id)->get();
 // dd($dados[5]);
         return view('produtor.mostrarcotacao', compact('dados'));
     }

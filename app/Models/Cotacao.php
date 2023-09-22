@@ -15,6 +15,9 @@ class Cotacao extends Model
 
     protected $primaryKey = 'idcotacoes';
 
+
+    /*Função itens retorna nessa classe uma cotacaoitem, 
+    associando o cod_cotacao dela ao idcotacoes existente na tabela Cotacoes*/
     public function itens(){
         return $this->hasMany(CotacaoItem::class, 'cod_cotacao', 'idcotacoes');
     }

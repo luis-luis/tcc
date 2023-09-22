@@ -15,7 +15,9 @@ class CotacaoItem extends Model
 
     protected $primaryKey = 'idcotacoesitens';
 
+    /*Função produto retorna nessa classe um produto, 
+    associando o id dele ao cod_produto existente na tabela Cotacoesitens*/
     public function produto(){
-        return $this->belongsTo(Produto::class, 'cod_produto', 'id');
+        return $this->hasOne(Produto::class, 'id', 'cod_produto');
     }
 }
