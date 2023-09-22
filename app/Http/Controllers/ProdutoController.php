@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cotacao;
 use App\Models\Produto;
 use Symfony\Component\Routing\Route;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 {
@@ -28,13 +30,16 @@ class ProdutoController extends Controller
         return view('lojista.history', compact('produtos'));
     }
 
-    public function produtoinativo(Produto $id)
+    public function mostrarlojista(Request $request)
     {
         
     }
 
     public function store(Request $request)
     {
+
+        $userId = Auth::id();
+
         // Criação de um novo produto com os dados do formulário
         $produto = new Produto;
         $produto->marca_produto = $request->marca_produto;
@@ -42,6 +47,8 @@ class ProdutoController extends Controller
         $produto->descricao_produto = $request->descricao_produto;
         $produto->valor_produto = $request->valor_produto;
         $produto->qtd_produto = $request->quantidade_produto;
+        $userId = Auth::user()->id;
+        $produto->cod_user = $userId;
         $produto->save();
 
         // Redirecionamento para uma página de sucesso ou exibição dos dados salvos
@@ -76,5 +83,12 @@ class ProdutoController extends Controller
         $produto = Produto::where('id', $id)->delete();
 
         return redirect()->route('lojista.history')->with('success', 'Produto excluido com sucesso!');
+    }
+
+    public function vercotacao(Request $request, Cotacao $cotacoes)
+    {
+        $cotacoes = Cotacao::find('idcotacoes');
+
+        return view('lojista.vercotacao');
     }
 }

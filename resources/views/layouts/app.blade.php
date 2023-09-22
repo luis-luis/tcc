@@ -85,7 +85,7 @@
                             <a class="nav-link" href="{{route('lojista.history')}}">Consultar produtos cadastrados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Verificar solicitações de produtos</a>
+                            <a class="nav-link" href="{{route('lojista.vercotacao')}}">Verificar solicitações de produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>

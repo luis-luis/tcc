@@ -90,6 +90,8 @@ Route::any('/updateproduto/{id}', [ProdutoController::class, 'update'])->name('l
 
 Route::any('/destroyproduto/{id}', [ProdutoController::class, 'destroy'])->name('lojista.destroyproduto');
 
+Route::any('/vercotacao', [ProdutoController::class, 'vercotacao'])->name('lojista.vercotacao');
+
 // lojista //
 
 // pessoa //

@@ -51,7 +51,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($cotacao->itens as $item)
+                                                        @foreach($cotacao->itens as $item)
                                                         <tr>
                                                             <td scope="row">{{ $item->cod_cotacao }}</td>
                                                             <td scope="row">{{ $item->produto->nome_produto }}</td>
