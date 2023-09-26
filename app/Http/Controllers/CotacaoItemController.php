@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CotacaoItem;
 use App\Models\Produto;
 use App\Models\Cotacao;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -14,10 +15,18 @@ use Illuminate\Support\Facades\DB;
 class CotacaoItemController extends Controller
 {
 
+    /*função para trazer apenas os usuários fornecedores*/
     public function index()
     {
+        $fornecedor = User::where('leveluser', 3)->get();
+        
+        return view('produtor.mostrarlojista', compact('fornecedor'));
+    }
 
-        $produtos = Produto::all();
+    public function produtofornecedor($id)
+    {
+        $produtos = Produto::where('cod_user', $id)->get();
+        
         return view('produtor.cotacao', compact('produtos'));
     }
 
@@ -40,7 +49,7 @@ class CotacaoItemController extends Controller
             $produto = Produto::find($produtoId);
 
             if ($quantidade <= $produto->qtd_produto) {
-                if($quantidade == 0){
+                if ($quantidade == 0) {
                     continue;
                 }
                 $x++;
@@ -48,7 +57,7 @@ class CotacaoItemController extends Controller
                 $cotacaoItem->cod_produto = $produtoId;
                 $cotacaoItem->qtd_produto = $quantidade;
                 $cotacaoItem->cod_cotacao = $cotacao->idcotacoes;
-                $cotacao->valor_cotacao += $produto->valor_produto*$quantidade;
+                $cotacao->valor_cotacao += $produto->valor_produto * $quantidade;
                 $cotacaoItem->save();
                 $cotacao->save();
 
@@ -59,18 +68,17 @@ class CotacaoItemController extends Controller
                 $message = "A quantidade solicitada é maior que a quantidade em estoque ou não há produtos em estoque";
 
                 return redirect(route('produtor.cotacao'))->with('erro', $message);
-
             }
             // dd($cotacao);
-        }      
-        if($x == 0){
+        }
+        if ($x == 0) {
             $cotacao->delete();
             $message = "A quantidade solicitada é maior que a quantidade em estoque ou não há produtos em estoque";
 
             return redirect(route('produtor.cotacao'))->with('erro', $message);
         }
 
-        return redirect(route('produtor.mostrarcotacao',['idcotacoes'=>$cotacao->idcotacoes]));
+        return redirect(route('produtor.mostrarcotacao', ['idcotacoes' => $cotacao->idcotacoes]));
     }
 
 
@@ -81,12 +89,12 @@ class CotacaoItemController extends Controller
     */
     public function show(Request $request)
     {
-        $dados = Cotacao::with(['itens'=>function($q){
-            return $q->with(['produto'=>function($q){
+        $dados = Cotacao::with(['itens' => function ($q) {
+            return $q->with(['produto' => function ($q) {
                 return $q->withTrashed();
             }]);
         }])->where('cod_user', '=', Auth::user()->id)->get();
-// dd($dados[5]);
+        // dd($dados[5]);
         return view('produtor.mostrarcotacao', compact('dados'));
     }
 

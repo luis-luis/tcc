@@ -67,8 +67,9 @@ Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produ
 // produtor //
 
 // cotacao produtor//
+Route::any('/produtor/fornecedor', [CotacaoItemController::class, 'index'])->name('produtor.mostrarlojista');
 
-Route::any('/produtor/cotacao', [CotacaoItemController::class, 'index'])->name('produtor.cotacao');
+Route::any('/produtor/cotacao', [CotacaoItemController::class, 'produtofornecedor'])->name('produtor.cotacao');
 
 Route::any('/produtor/cotacao/insert', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
 

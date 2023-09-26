@@ -52,11 +52,10 @@
                 <button type="submit" class="btn btn-success">Salvar</button>
             </div>
             <div class="col-1 ml-1">
-                <a href="{{ route('site.home') }}" type="button" class="btn btn-primary">
+                <a href="{{ route('produtor.mostrarlojista') }}" type="button" class="btn btn-primary">
                     Voltar
                 </a>
             </div>
-
         </div>
     </form>
 </div>

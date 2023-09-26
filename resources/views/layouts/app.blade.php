@@ -50,7 +50,7 @@
                             <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('produtor.cotacao')}}">Solicitar cotação</a>
+                            <a class="nav-link" href="{{route('produtor.mostrarlojista')}}">Solicitar cotação</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('produtor.mostrarcotacao')}}">Consultar cotações</a>
