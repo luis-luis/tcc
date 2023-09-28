@@ -21,10 +21,12 @@ class ProdutoController extends Controller
 
     public function show(Request $request)
     {
+        $userId = Auth::id();
+
         if ($request->isMethod('post')) {
-            $produtos = Produto::where('nome_produto', 'LIKE', '%' . $request->nome_produto . '%')->get();
+            $produtos = Produto::where('nome_produto', 'LIKE', '%' . $request->nome_produto . '%')->where('cod_user', $userId)->get();
         } else {
-            $produtos = Produto::all();
+            $produtos = Produto::where('cod_user', $userId)->withTrashed()->get();
         }
 
         return view('lojista.history', compact('produtos'));

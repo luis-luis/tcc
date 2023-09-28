@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Despesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,6 +39,8 @@ class DespesaController extends Controller
      */
     public function insert(Request $request, Despesa $despesa)
     {
+        $userId = Auth::id();
+
         $validator = Validator::make($request->all(), []);
 
         if ($validator->fails()) {
@@ -46,6 +49,7 @@ class DespesaController extends Controller
         try {
             $despesa->nome_despesa = $request->nome_despesa;
             $despesa->valor_despesa = $request->valor_despesa;
+            $despesa->cod_user = $userId;
             $despesa->data_despesa = Carbon::now();
             $despesa->save();
 
@@ -64,12 +68,14 @@ class DespesaController extends Controller
      */
     public function show(Request $request)
     {
+        $userId = Auth::id();
+
         if ($request->isMethod('post')) {
-            $dados = Despesa::where('nome_despesa', 'LIKE', '%' . $request->nome_despesa . '%')->get();
+            $dados = Despesa::where('nome_despesa', 'LIKE', '%' . $request->nome_despesa . '%')->where('cod_user', $userId)->get();
             // dd($request->nome_despesa);
 
         } else {
-            $dados = Despesa::all();
+            $dados = Despesa::where('cod_user', $userId)->get();
         }
 
         return view('produtor.history', ['dados' => $dados]);

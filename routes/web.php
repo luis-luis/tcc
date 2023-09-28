@@ -56,7 +56,7 @@ Route::get('/registro', [RegistrationController::class, 'create'])->name('regist
 
 Route::post('registro', [RegistrationController::class, 'store']);
 
-// produtor //
+// despesa produtor //
 
 Route::get('/despesa', [DespesaController::class, 'index'])->name('produtor.index');
 
@@ -64,7 +64,7 @@ Route::post('/despesa/insert', [DespesaController::class, 'insert'])->name('prod
 
 Route::any('/despesahistorico', [DespesaController::class, 'show'])->name('produtor.history');
 
-// produtor //
+// despesa produtor //
 
 // cotacao produtor//
 Route::any('/produtor/fornecedor', [CotacaoItemController::class, 'index'])->name('produtor.mostrarlojista');
