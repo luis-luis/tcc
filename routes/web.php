@@ -71,7 +71,7 @@ Route::any('/produtor/fornecedor', [CotacaoItemController::class, 'index'])->nam
 
 Route::any('/produtor/cotacao/show', [CotacaoItemController::class, 'show'])->name('produtor.mostrarcotacao');
 
-Route::any('/produtor/cotacao/insert', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
+Route::any('/produtor/cotacao/insert/', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
 
 Route::any('/produtor/cotacao/{id}', [CotacaoItemController::class, 'produtofornecedor'])->name('produtor.cotacao');
 

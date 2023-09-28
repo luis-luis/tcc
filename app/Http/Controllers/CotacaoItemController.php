@@ -37,7 +37,9 @@ class CotacaoItemController extends Controller
 
     public function store(Request $request, CotacaoItem $cotacaoItem)
     {
-        $userId = Auth::user()->id;
+        
+        $userId = Auth::id();
+
         $cotacao = new Cotacao;
         $cotacao->cod_user = $userId;
         $cotacao->valor_cotacao = 0;
@@ -45,7 +47,7 @@ class CotacaoItemController extends Controller
         $x = 0;
         // dd($cotacao);
         foreach ($request->produto as $produtoId => $quantidade) {
-
+            
             $produto = Produto::find($produtoId);
 
             if ($quantidade <= $produto->qtd_produto) {

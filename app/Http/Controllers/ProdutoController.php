@@ -89,8 +89,8 @@ class ProdutoController extends Controller
 
     public function vercotacao(Request $request, Cotacao $cotacoes)
     {
-        $cotacoes = Cotacao::find('idcotacoes');
+        $cotacoes = Cotacao::find('idcotacoes')->where('cod_user', )->get();
 
-        return view('lojista.vercotacao');
+        return view('lojista.vercotacao', compact('cotacoes'));
     }
 }
