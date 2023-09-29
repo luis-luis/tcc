@@ -87,10 +87,18 @@ class ProdutoController extends Controller
         return redirect()->route('lojista.history')->with('success', 'Produto excluido com sucesso!');
     }
 
-    public function vercotacao(Request $request, Cotacao $cotacoes)
+    public function vercotacao(Request $request)
     {
-        $cotacoes = Cotacao::find('idcotacoes')->where('cod_user', )->get();
+        if($request->isMethod('post')){
+            $cotacoes = Cotacao::Where('idcotacoes', $request->nome_produto)->where('cod_fornecedor', Auth::id())->get();
+
+        }else{
+            $cotacoes = Cotacao::where('cod_fornecedor', Auth::id())->get();
+        }
+        // dd($cotacoes);
 
         return view('lojista.vercotacao', compact('cotacoes'));
     }
 }
+
+    

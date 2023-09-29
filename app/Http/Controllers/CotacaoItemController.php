@@ -60,6 +60,7 @@ class CotacaoItemController extends Controller
                 $cotacaoItem->qtd_produto = $quantidade;
                 $cotacaoItem->cod_cotacao = $cotacao->idcotacoes;
                 $cotacao->valor_cotacao += $produto->valor_produto * $quantidade;
+                $cotacaoItem->cod_fornecedor = $produto->cod_user;
                 $cotacaoItem->save();
                 $cotacao->save();
 
@@ -78,6 +79,9 @@ class CotacaoItemController extends Controller
             $message = "A quantidade solicitada é maior que a quantidade em estoque ou não há produtos em estoque";
 
             return redirect(route('produtor.cotacao'))->with('erro', $message);
+        }else{
+            $cotacao->cod_fornecedor = $produto->cod_user;
+            $cotacao->save();
         }
 
         return redirect(route('produtor.mostrarcotacao', ['idcotacoes' => $cotacao->idcotacoes]));

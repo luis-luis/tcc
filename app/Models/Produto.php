@@ -16,6 +16,8 @@ class Produto extends Model
 
     protected $primaryKey = 'id';
 
-
+    // public function produto(){
+    //     return $this->hasMany(Produto::)
+    // }
 
 }
