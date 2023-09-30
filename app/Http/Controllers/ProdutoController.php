@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cotacao;
 use App\Models\Produto;
+use App\Models\Status;
 use Symfony\Component\Routing\Route;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDO;
 
 class ProdutoController extends Controller
 {
@@ -99,6 +101,30 @@ class ProdutoController extends Controller
 
         return view('lojista.vercotacao', compact('cotacoes'));
     }
+
+    public function atenderpedido($id){
+
+        $cotacao = Cotacao::where('idcotacoes', $id)->first();
+
+        $cotacao->cod_status = 1;
+        $cotacao->save();
+
+        return redirect()->route('lojista.vercotacao')->with('success', 'Pedido atendido!');;
+
+    }
+
+    public function recusarpedido($id){
+
+        $cotacao = Cotacao::where('idcotacoes', $id)->first();
+
+        $cotacao->cod_status = 4;
+        $cotacao->save();
+
+        return redirect()->route('lojista.vercotacao')->with('success', 'Pedido recusado!');;
+
+    }
+    
+
 }
 
     

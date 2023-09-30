@@ -68,13 +68,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($cotacao->itens as $pedido)
                                                 <tr>
-                                                    <td> {{ $cotacao->idcotacoes }} </td>
-                                                    <td> {{ $cotacao->nome_produto }} </td>
-                                                    <td> {{ $cotacao->idcotacoes }} </td>
-                                                    <td> {{ $cotacao->idcotacoes }} </td>
-                                                    <td> {{ $cotacao->idcotacoes }} </td>
+                                                    <td> {{ $pedido->cod_cotacao }} </td>
+                                                    <td> {{ $pedido->produto->nome_produto }} </td>
+                                                    <td> {{ $pedido->produto->valor_produto }} </td>
+                                                    <td> {{ $pedido->qtd_produto }} </td>
+                                                    <td> {{ $cotacao->cod_status }} </td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -85,10 +87,11 @@
                             </div>
                         </div>
                     </td>
+                    <td name="status">{{ $cotacao->cod_status }}</td>
                     <td></td>
                     <td></td>
-                    <td><a href="" type="button" class="btn btn-success">Atender pedido</button></td>
-                    <td><a href="" type="button" class="btn btn-danger">Recusar pedido</button></td>
+                    <td><a href="{{ route('lojista.atenderpedido', ['id' => $cotacao->idcotacoes]) }}" type="button" class="btn btn-success">Atender pedido</a></td>
+                    <td><a href="{{ route('lojista.recusarpedido', ['id' => $cotacao->idcotacoes]) }}" type="button" class="btn btn-danger">Recusar pedido</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -101,3 +104,4 @@
 </div>
 
 @endsection
+

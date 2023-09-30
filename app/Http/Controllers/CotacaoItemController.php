@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CotacaoItem;
 use App\Models\Produto;
 use App\Models\Cotacao;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -61,6 +62,7 @@ class CotacaoItemController extends Controller
                 $cotacaoItem->cod_cotacao = $cotacao->idcotacoes;
                 $cotacao->valor_cotacao += $produto->valor_produto * $quantidade;
                 $cotacaoItem->cod_fornecedor = $produto->cod_user;
+                $cotacao->cod_status = 2;
                 $cotacaoItem->save();
                 $cotacao->save();
 
@@ -104,9 +106,20 @@ class CotacaoItemController extends Controller
         return view('produtor.mostrarcotacao', compact('dados'));
     }
 
-    public function edit(cotacao $cotacao)
+    public function cancelarpedido($id)
     {
-        //
+        $cotacao = Cotacao::where('idcotacoes', $id)->first();
+
+        if($cotacao->cod_status = 4){
+            $message = "O pedido não pode ser cancelado pois já está recusado";
+
+            return redirect(route('produtor.mostrarcotacao'))->with('erro', $message);
+        }else{
+            $cotacao->cod_status = 5;
+            $cotacao->save();
+        }
+
+        return redirect(route('produtor.mostrarcotacao'))->with('success', "Pedido cancelado!");
     }
 
     public function update(Request $request, cotacao $cotacao)

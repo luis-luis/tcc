@@ -73,8 +73,9 @@ Route::any('/produtor/cotacao/show', [CotacaoItemController::class, 'show'])->na
 
 Route::any('/produtor/cotacao/insert/', [CotacaoItemController::class, 'store'])->name('produtor.cotacaoinsert');
 
-Route::any('/produtor/cotacao/{id}', [CotacaoItemController::class, 'produtofornecedor'])->name('produtor.cotacao');
+Route::any('/produtor/cancelarpedido/{id}', [CotacaoItemController::class, 'cancelarpedido'])->name('produtor.cancelarpedido');
 
+Route::any('/produtor/cotacao/{id}', [CotacaoItemController::class, 'produtofornecedor'])->name('produtor.cotacao');
 
 // cotacao produtor//
 
@@ -93,6 +94,10 @@ Route::any('/updateproduto/{id}', [ProdutoController::class, 'update'])->name('l
 Route::any('/destroyproduto/{id}', [ProdutoController::class, 'destroy'])->name('lojista.destroyproduto');
 
 Route::any('/vercotacao', [ProdutoController::class, 'vercotacao'])->name('lojista.vercotacao');
+
+Route::any('/atenderpedido/{id}', [ProdutoController::class, 'atenderpedido'])->name('lojista.atenderpedido');
+
+Route::any('/recusarpedido/{id}', [ProdutoController::class, 'recusarpedido'])->name('lojista.recusarpedido');
 
 // lojista //
 
