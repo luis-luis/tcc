@@ -38,7 +38,7 @@
                             @foreach ($dados as $cotacao)
                             <tr>
                                 <td scope="row" name="idproduto">{{ $cotacao->idcotacoes }}</td>
-                                <td name="nome_produto">{{ $cotacao->cod_status }}</td>
+                                <td name="nome_produto">{{ $cotacao->status->status }}</td>
                                 <td name="valor_produto">{{ $cotacao->valor_cotacao }}</td>
                                 <td>
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#cotacao{{$cotacao->idcotacoes}}">Visualizar itens da cotação</button>

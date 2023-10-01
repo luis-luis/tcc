@@ -22,4 +22,11 @@ class Cotacao extends Model
         return $this->hasMany(CotacaoItem::class, 'cod_cotacao', 'idcotacoes');
     }
 
+    public function status(){
+        return $this->hasOne(Status::class, 'id_status', 'cod_status');
+    
+    }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'cod_user');
+    }
 }

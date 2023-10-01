@@ -101,7 +101,7 @@ class CotacaoItemController extends Controller
             return $q->with(['produto' => function ($q) {
                 return $q->withTrashed();
             }]);
-        }])->where('cod_user', '=', Auth::user()->id)->get();
+        }])->where('cod_user', '=', Auth::user()->id)->orderBy('idcotacoes', 'desc')->get();
         // dd($dados[5]);
         return view('produtor.mostrarcotacao', compact('dados'));
     }
@@ -110,10 +110,16 @@ class CotacaoItemController extends Controller
     {
         $cotacao = Cotacao::where('idcotacoes', $id)->first();
 
-        if($cotacao->cod_status = 4){
+        if($cotacao->cod_status == 4){
             $message = "O pedido não pode ser cancelado pois já está recusado";
 
             return redirect(route('produtor.mostrarcotacao'))->with('erro', $message);
+        }else if($cotacao->cod_status == 1 || $cotacao->cod_status == 3 || $cotacao->cod_status == 5){
+
+            $message = "O pedido não pode ser cancelado pois já está Atendido, Parcialmente atendido ou já está Recusado.";
+
+            return redirect(route('produtor.mostrarcotacao'))->with('erro', $message);
+
         }else{
             $cotacao->cod_status = 5;
             $cotacao->save();

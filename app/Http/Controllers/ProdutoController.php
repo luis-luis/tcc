@@ -95,7 +95,7 @@ class ProdutoController extends Controller
             $cotacoes = Cotacao::Where('idcotacoes', $request->nome_produto)->where('cod_fornecedor', Auth::id())->get();
 
         }else{
-            $cotacoes = Cotacao::where('cod_fornecedor', Auth::id())->get();
+            $cotacoes = Cotacao::where('cod_fornecedor', Auth::id())->orderBy('idcotacoes', 'desc')->get();
         }
         // dd($cotacoes);
 
@@ -106,8 +106,17 @@ class ProdutoController extends Controller
 
         $cotacao = Cotacao::where('idcotacoes', $id)->first();
 
-        $cotacao->cod_status = 1;
-        $cotacao->save();
+        if($cotacao->cod_status == 5 || $cotacao->cod_status == 4){
+            $message = "O pedido não pode ser atendido pois já está Cancelado ou Recusado";
+
+            return redirect(route('lojista.vercotacao'))->with('erro', $message);
+
+        }else{
+            $cotacao = Cotacao::where('idcotacoes', $id)->first();
+
+            $cotacao->cod_status = 1;
+            $cotacao->save();
+        }
 
         return redirect()->route('lojista.vercotacao')->with('success', 'Pedido atendido!');;
 
@@ -117,13 +126,22 @@ class ProdutoController extends Controller
 
         $cotacao = Cotacao::where('idcotacoes', $id)->first();
 
-        $cotacao->cod_status = 4;
-        $cotacao->save();
 
-        return redirect()->route('lojista.vercotacao')->with('success', 'Pedido recusado!');;
+        if($cotacao->cod_status == 5 || $cotacao->cod_status == 1 || $cotacao->cod_status == 4){
+            $message = "O pedido não pode ser Recusado pois já está Recusado, Atendido ou Cancelado";
 
-    }
-    
+            return redirect(route('lojista.vercotacao'))->with('erro', $message);
+
+        }else{
+            $cotacao = Cotacao::where('idcotacoes', $id)->first();
+
+            $cotacao->cod_status = 4;
+            $cotacao->save();
+        }
+
+        return redirect()->route('lojista.vercotacao')->with('success', 'Pedido Recusado!');;
+
+    }    
 
 }
 

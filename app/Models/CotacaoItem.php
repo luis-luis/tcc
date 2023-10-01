@@ -20,4 +20,5 @@ class CotacaoItem extends Model
     public function produto(){
         return $this->hasOne(Produto::class, 'id', 'cod_produto');
     }
+
 }

@@ -31,9 +31,16 @@
             {{session("success")}}
         </div>
         @endif
+    <div class="mb-3">
+        @if(session("erro"))
+        <div class="alert alert-danger" role="alert">
+            {{session("erro")}}
+        </div>
+        @endif
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col">Nome produtor</th>
                     <th scope="col">Cod. Cotação</th>
                     <th scope="col">Valor cotação</th>
                     <th scope="col">Itens da cotação</th>
@@ -43,6 +50,7 @@
             <tbody>
                 @foreach($cotacoes as $cotacao)
                 <tr>
+                    <td name="nome_produtor"> {{ $cotacao->user->name }}</td>
                     <td scope="row" name="idproduto">{{ $cotacao->idcotacoes }}</td>
                     <td name="valor_produto">R$ {{ $cotacao->valor_cotacao }}</td>
                     <td>
@@ -87,7 +95,7 @@
                             </div>
                         </div>
                     </td>
-                    <td name="status">{{ $cotacao->cod_status }}</td>
+                    <td name="status">{{ $cotacao->status->status }}</td>
                     <td></td>
                     <td></td>
                     <td><a href="{{ route('lojista.atenderpedido', ['id' => $cotacao->idcotacoes]) }}" type="button" class="btn btn-success">Atender pedido</a></td>
