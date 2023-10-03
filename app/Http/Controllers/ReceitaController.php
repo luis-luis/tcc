@@ -34,9 +34,10 @@ class ReceitaController extends Controller
         if ($request->isMethod('post')) {
             $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
             ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
-            ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')->where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
+            ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
+            ->where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
         }
-
+       
         return view('receita.history', compact('dados'));
     }
 
