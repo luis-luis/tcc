@@ -89,7 +89,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 <tr>
                                                     <td scope="row">{{ $pulv->idreceitas }}</td>
                                                     <td scope="row">{{ $pulv->nome_pessoa }}</td>
@@ -99,6 +98,48 @@
                                                     <td scope="row">{{ $pulv->cult }}</td>
                                                     <td scope="row">{{ $pulv->nome_agrotoxico }}</td>
                                                     <td scope="row">{{ $pulv->qtd_veneno }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                    <td>
+                        <button class="btn btn-success" data-toggle="modal" data-target="">Associar pulverização</button>
+                        <div class="modal fade" tabindex="-1" id="" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Associar pulverização</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Cod. Cotacao</th>
+                                                    <th scope="col">Nome produto</th>
+                                                    <th scope="col">Preço Unit.</th>
+                                                    <th scope="col">Quantidade</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td scope="row"></td>
+                                                    <td scope="row"></td>
+                                                    <td scope="row"></td>
+                                                    <td scope="row"></td>
+                                                    <td scope="row"></td>
                                                 </tr>
 
                                             </tbody>
@@ -111,7 +152,6 @@
                             </div>
                         </div>
                     </td>
-                    <td><a href="" type="button" class="btn btn-danger">Associar Pulverização</a></td>
                 </tr>
                 @endforeach
             </tbody>
