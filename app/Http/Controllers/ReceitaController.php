@@ -6,6 +6,7 @@ use App\Models\Receita;
 use App\Models\Pessoa;
 use App\Models\PulvVeneno;
 use App\Models\Agrotoxico;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
@@ -24,12 +25,20 @@ class ReceitaController extends Controller
         // Recupera o ID do usuário agrônomo logado
         $userId = Auth::id();
 
+        $user = User::where('leveluser', 1)->get();
+
         // Recupera as informações desejadas do banco de dados
-        $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
-            ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
-            ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
-            ->where('receitas.coduser', $userId)
-            ->get();
+        $receitas = Receita::with(['pessoa','pulvVeneno'=>function($q){
+            return $q->with(['agrotoxico']);
+        }])->where('coduser', $userId)
+        ->get();
+
+        //dd($receitas);
+        // $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
+        //     ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
+        //     ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
+        //     ->where('receitas.coduser', $userId)
+        //     ->get();
 
         if ($request->isMethod('post')) {
             $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
@@ -38,7 +47,7 @@ class ReceitaController extends Controller
             ->where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
         }
        
-        return view('receita.history', compact('dados'));
+        return view('receita.history', compact('receitas', 'user'));
     }
 
     public function mostrar()
@@ -88,6 +97,25 @@ class ReceitaController extends Controller
         $agrotoxicos = Agrotoxico::all();
 
         return view('receita.insertveneno', compact('agrotoxicos'));
+    }
+
+    public function associarusuario(Request $request, $idreceitas){
+
+        $receita = Receita::where('idreceitas', $idreceitas)->first();
+
+        if($receita->cod_user_cliente != null){
+            $message = "Pulverização já possui cliente vinculado";
+
+            return redirect(route('receita.history'))->with('error', $message);
+
+        }else{
+    
+        $receita->cod_user_cliente = $request->id;
+        $receita->save();
+
+        }
+        $message = "Cliente vinculado com sucesso";
+        return redirect(route('receita.history'))->with('success', $message);
     }
 
     public function update(Request $request, Receita $receita)

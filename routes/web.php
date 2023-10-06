@@ -42,6 +42,8 @@ Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.i
 
 Route::any('/saveveneno', [ReceitaController::class, 'showveneno'])->name('receita.saveveneno');
 
+Route::post('/receita/{idreceitas}/associarusuario', [ReceitaController::class, 'associarusuario'])->name('receita.associarusuario');
+
 //Route::any('/saveveneno', [ReceitaController::class, 'insertveneno'])->name('receita.saveveneno');
 
 // pulverizacao //

@@ -22,27 +22,6 @@
     </div>
 </form>
 
-<!-- Listagem da pulverização-->
-
-<!-- <div class="container py-3">
-    <div class="col-md-7">
-        <p class="lead" text->Pulverizações anteriores</p>
-    </div>
-    @foreach($dados as $pulv)
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>Id receita: <b>{{$pulv->idreceitas}} </li>
-        <li class="list-group-item"><b>Cliente: <b>{{$pulv->nome_pessoa}} </li>
-        <li class="list-group-item"><b>Telefone: <b>{{$pulv->tel_pessoa}} </li>
-        <li class="list-group-item"><b>Tamanho do tanque veneno: <b>{{$pulv->tanque_veneno}} </li>
-        <li class="list-group-item"><b>Data do registro: <b>{{$pulv->data_receita}} </li>
-        <li class="list-group-item"><b>Tamanho da área de aplicacao: <b>{{$pulv->area_app}} </li>
-        <li class="list-group-item"><b>Cultura aplicada: <b>{{$pulv->cult}} </li>
-        <li class="list-group-item"><b>Agrotoxicos aplicados: <b>{{$pulv->nome_agrotoxico}} </li>
-        <li class="list-group-item"><b>Quantidade de agrotóxicos aplicada: <b>{{$pulv->qtd_veneno}} </li>
-        <br>
-    </ul>
-    @endforeach -->
-
 </div>
 <div class="container">
     <div class="row">
@@ -57,10 +36,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($dados as $pulv)
+                @foreach($receitas as $pulv)
                 <tr>
                     <td scope="row" name="idreceitas">{{ $pulv->idreceitas }}</td>
-                    <td name="nome_pessoa">{{ $pulv->nome_pessoa }}</td>
+                    <td name="nome_pessoa">{{ $pulv->pessoa->nome_pessoa }}</td>
                     <td name="data_receita">{{ $pulv->data_receita }}</td>
                     <td name="tel_pessoa">{{ $pulv->tel_pessoa }}</td>
                     <td>
@@ -89,16 +68,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach($pulv->pulvVeneno as $a)
                                                 <tr>
                                                     <td scope="row">{{ $pulv->idreceitas }}</td>
-                                                    <td scope="row">{{ $pulv->nome_pessoa }}</td>
-                                                    <td scope="row">{{ $pulv->tel_pessoa }}</td>
+                                                    <td scope="row">{{ $pulv->pessoa->nome_pessoa }}</td>
+                                                    <td scope="row">{{ $pulv->pessoa->tel_pessoa }}</td>
                                                     <td scope="row">{{ $pulv->tanque_veneno }}</td>
                                                     <td scope="row">{{ $pulv->area_app }}</td>
                                                     <td scope="row">{{ $pulv->cult }}</td>
-                                                    <td scope="row">{{ $pulv->nome_agrotoxico }}</td>
+                                                    <td scope="row">{{ $a->agrotoxico->nome_agrotoxico }}</td>
                                                     <td scope="row">{{ $pulv->qtd_veneno }}</td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -110,9 +91,8 @@
                         </div>
                     </td>
                     <td>
-                    <td>
-                        <button class="btn btn-success" data-toggle="modal" data-target="">Associar pulverização</button>
-                        <div class="modal fade" tabindex="-1" id="" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#pulverizacao{{$pulv->idreceitas}}">Associar pulverização</button>
+                        <div class="modal fade" tabindex="-1" id="pulverizacao{{$pulv->idreceitas}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -121,33 +101,30 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Cod. Cotacao</th>
-                                                    <th scope="col">Nome produto</th>
-                                                    <th scope="col">Preço Unit.</th>
-                                                    <th scope="col">Quantidade</th>
-                                                    <th scope="col">Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <tr>
-                                                    <td scope="row"></td>
-                                                    <td scope="row"></td>
-                                                    <td scope="row"></td>
-                                                    <td scope="row"></td>
-                                                    <td scope="row"></td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                    </div>
+                                    <form method="post" action="{{ route('receita.associarusuario', ['idreceitas' => $pulv->idreceitas])}}">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        <div class="modal-body">
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Nome cliente</td>
+                                                        <td scope="row">
+                                                            <select name="id" class="form-control">
+                                                                <option value="" selected>Selecione o Cliente</option>
+                                                                @foreach($user as $cliente)
+                                                                <option value="{{$cliente->id}}">{{$cliente->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success">Associar</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
