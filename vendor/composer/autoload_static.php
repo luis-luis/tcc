@@ -603,6 +603,7 @@ class ComposerStaticInit4940f105d05e5f5b80997460cc7f261d
         'App\\Models\\Produto' => __DIR__ . '/../..' . '/app/Models/Produto.php',
         'App\\Models\\PulvVeneno' => __DIR__ . '/../..' . '/app/Models/PulvVeneno.php',
         'App\\Models\\Receita' => __DIR__ . '/../..' . '/app/Models/Receita.php',
+        'App\\Models\\Status' => __DIR__ . '/../..' . '/app/Models/Status.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

@@ -9,20 +9,20 @@
         <p class="lead" text->Preencha abaixo os dados do cliente!</p>
     </div>
 </div>
-<form method="post" action="{{route('pessoa.insert')}}">
+<form method="post" action="{{route('pessoa.updatepessoa', $pessoa->idpessoa)}}">
     <div class="container py-3">
         @csrf
         <div class="mb-3">
             <label class="form-label">Nome do Agricultor</label>
-            <input type="text" class="form-control" id="cliente" name="cliente">
+            <input type="text" class="form-control" id="nome_pessoa" name="nome_pessoa" value="{{$pessoa->nome_pessoa}}">
         </div>
         <div class="mb-3">
             <label for="phone">Qual o telefone do agricultor?</label>
-            <input type="tel" class="form-control" id="phone" name="phone" maxlength="15" placeholder="(99)99999-9999">
+            <input type="tel" class="form-control" id="tel_pessoa" name="tel_pessoa" maxlength="15" placeholder="(99)99999-9999"  value="{{$pessoa->tel_pessoa}}">
         </div>
         <div class="mb-3">
             <label for="">Endereço</label>
-            <input type="text" class="form-control" id="endereco" name="endereco">
+            <input type="text" class="form-control" id="endereco" name="endereco" value="{{$pessoa->id_endereco}}">
         </div>
         <div class="mb-3">
             <label for="">Cidade</label>
@@ -52,7 +52,7 @@
             </select>
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-success col-1 ml-1">Avançar</button>
+            <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
             <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">
                 Voltar
             </a>

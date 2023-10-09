@@ -44,7 +44,6 @@
                                 <th scope="col">Nº Pulverização</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Data pulverização</th>
-                                <th scope="col">Telefone </th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -58,7 +57,7 @@
                                 <td>
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#pulv{{$pulv->idreceitas}}">Detalhes da pulverização</button>
                                     <div class="modal fade" tabindex="-1" id="pulv{{$pulv->idreceitas}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-dialog modal-xl" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Detalhes da pulverização</h5>
@@ -78,6 +77,7 @@
                                                                 <th scope="col">Cultura aplicada</th>
                                                                 <th scope="col">Agrotoxicos aplicados</th>
                                                                 <th scope="col">Quantidade aplicada (em Litros)</th>
+                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -91,6 +91,9 @@
                                                                 <td scope="row">{{ $pulv->cult }}</td>
                                                                 <td scope="row">{{ $a->agrotoxico->nome_agrotoxico }}</td>
                                                                 <td scope="row">{{ $pulv->qtd_veneno }}</td>
+                                                                <td>
+                                                                    <a href="{{route('receita.removeagrotoxico', ['idreceitas'=>$pulv->idreceitas ,'idagrotoxico'=>$a->cod_agrotoxico])}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja remover este agrotóxico?');">Remover Agrotóxico</a>
+                                                                </td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>

@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><a href="{{ route('produtor.cancelarpedido', ['id' => $cotacao->idcotacoes]) }}" type="button" class="btn btn-danger">Cancelar pedido</a></td>
+                                    <td><a href="{{ route('produtor.cancelarpedido', ['id' => $cotacao->idcotacoes]) }}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja cancelar esse pedido?');">Cancelar pedido</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

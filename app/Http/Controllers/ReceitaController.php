@@ -28,11 +28,16 @@ class ReceitaController extends Controller
             return $q->with(['agrotoxico']);
         }])->where('coduser', $userId)
         ->get();
+        
 
         if ($request->isMethod('post')) {
-            $receitas = Receita::with(['pessoa','pulvVeneno'=>function($q){
+            //dd($request->all());
+            $receitas = Receita::whereHas('pessoa',function($q) use($request){
+                $q->where('nome_pessoa', 'LIKE', '%' .$request->nome_cliente. '%');
+            })->with(['pulvVeneno' =>function($q){
                 return $q->with(['agrotoxico']);
-            }])->where('nome_cliente', 'LIKE', '%' . '%')->get();    
+            }])->get();    
+
         }
  
         return view('receita.history', compact('receitas', 'user'));
@@ -135,8 +140,13 @@ class ReceitaController extends Controller
     }
 
 
-    public function destroy(Receita $receita)
+    public function removeagrotoxico($idreceitas ,$idagrotoxico)
     {
-        //
+        $agrotoxico = PulvVeneno::where('cod_receita', $idreceitas)->where('cod_agrotoxico', $idagrotoxico)->delete();
+
+        $message = "Agrotoxico removido com sucesso!";
+
+        return redirect(route('receita.history'))->with('success', $message);
+
     }
 }

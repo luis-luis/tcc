@@ -53,6 +53,7 @@ return array(
     'App\\Models\\Produto' => $baseDir . '/app/Models/Produto.php',
     'App\\Models\\PulvVeneno' => $baseDir . '/app/Models/PulvVeneno.php',
     'App\\Models\\Receita' => $baseDir . '/app/Models/Receita.php',
+    'App\\Models\\Status' => $baseDir . '/app/Models/Status.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

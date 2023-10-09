@@ -42,6 +42,8 @@ Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.i
 
 Route::any('/saveveneno', [ReceitaController::class, 'showveneno'])->name('receita.saveveneno');
 
+Route::any('/receita/{idreceitas}/agrotoxico/{idagrotoxico}/removeagrotoxico', [ReceitaController::class, 'removeagrotoxico'])->name('receita.removeagrotoxico');
+
 Route::any('/receita/{idreceitas}/removerassociacao', [ReceitaController::class, 'removerassociacao'])->name('receita.removerassociacao');
 
 Route::post('/receita/{idreceitas}/associarusuario', [ReceitaController::class, 'associarusuario'])->name('receita.associarusuario');
@@ -110,5 +112,13 @@ Route::any('/recusarpedido/{id}', [ProdutoController::class, 'recusarpedido'])->
 Route::get('/pessoa', [PessoaController::class, 'pessoa'])->name('pessoa.insertpessoa');
 
 Route::post('/pessoa/insert', [PessoaController::class, 'create'])->name('pessoa.insert');
+
+Route::any('/pessoa/historypessoa', [PessoaController::class, 'show'])->name('pessoa.historypessoa');
+
+Route::any('/pessoa/editpessoa/{idpessoa}', [PessoaController::class, 'edit'])->name('pessoa.editpessoa');
+
+Route::any('/pessoa/updatepessoa/{idpessoa}', [PessoaController::class, 'update'])->name('pessoa.updatepessoa');
+
+Route::any('/pessoa/destroypessoa/{idpessoa}', [PessoaController::class, 'destroy'])->name('pessoa.destroypessoa');
 
 // pessoa //

@@ -71,6 +71,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('pessoa.insertpessoa')}}">Cadastrar novo cliente</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('pessoa.historypessoa')}}">Consultar clientes</a>
+                        </li>
                         @endauth
                     </ul>
                     @endif
