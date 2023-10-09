@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReceitaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         // Recupera o ID do usuário agrônomo logado
@@ -33,20 +29,12 @@ class ReceitaController extends Controller
         }])->where('coduser', $userId)
         ->get();
 
-        //dd($receitas);
-        // $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
-        //     ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
-        //     ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
-        //     ->where('receitas.coduser', $userId)
-        //     ->get();
-
         if ($request->isMethod('post')) {
-            $dados = DB::table('pessoas')->rightJoin('receitas', 'receitas.codpessoa', '=', 'pessoas.idpessoa')
-            ->join('pulv_venenos', 'receitas.idreceitas', '=', 'pulv_venenos.cod_receita')
-            ->join('agrotoxicos', 'pulv_venenos.cod_agrotoxico', '=', 'agrotoxicos.idagrotoxico')
-            ->where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
+            $receitas = Receita::with(['pessoa','pulvVeneno'=>function($q){
+                return $q->with(['agrotoxico']);
+            }])->where('nome_cliente', 'LIKE', '%' . '%')->get();    
         }
-       
+ 
         return view('receita.history', compact('receitas', 'user'));
     }
 
@@ -104,18 +92,41 @@ class ReceitaController extends Controller
         $receita = Receita::where('idreceitas', $idreceitas)->first();
 
         if($receita->cod_user_cliente != null){
-            $message = "Pulverização já possui cliente vinculado";
+            $message = "Pulverização já está vinculada ao cliente: ".$receita->clientes->name;
 
-            return redirect(route('receita.history'))->with('error', $message);
+            return redirect(route('receita.history'))->with('erro', $message);
 
         }else{
-    
-        $receita->cod_user_cliente = $request->id;
-        $receita->save();
+                $receita->cod_user_cliente = $request->id;
+                $receita->save();
+
+                $message = "Pulverização vinculadas com sucesso à: ".$receita->clientes->name;
+                return redirect(route('receita.history'))->with('success', $message);
+        }
+
+    }
+
+    public function removerassociacao(Request $request, $idreceitas){
+
+        $receita = Receita::where('idreceitas', $idreceitas)->first();
+
+        if($receita->cod_user_cliente !== null){
+
+            $receita->cod_user_cliente = null;
+            $receita->save();
+
+        }else{
+
+            $message = "Não há produtor vinculado à pulverização";
+
+            return redirect()->route(('receita.history'))->with('erro', $message);
 
         }
-        $message = "Cliente vinculado com sucesso";
+
+        $message = "Associação removida com sucesso!";
+
         return redirect(route('receita.history'))->with('success', $message);
+
     }
 
     public function update(Request $request, Receita $receita)
