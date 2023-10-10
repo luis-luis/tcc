@@ -6,7 +6,7 @@
 <div class="container">
     <div class="col-md-7">
         <h2 class="featurette-heading">Agronote</h2>
-        <p class="lead" text->Preencha abaixo os dados do cliente!</p>
+        <p class="lead" text->Editando dados do cliente</p>
     </div>
 </div>
 <form method="post" action="{{route('pessoa.updatepessoa', $pessoa->idpessoa)}}">
@@ -22,12 +22,12 @@
         </div>
         <div class="mb-3">
             <label for="">Endereço</label>
-            <input type="text" class="form-control" id="endereco" name="endereco" value="{{$pessoa->id_endereco}}">
+            <input type="text" class="form-control" id="endereco" name="endereco" value="{{$pessoa->endereco->endereco}}">
         </div>
         <div class="mb-3">
             <label for="">Cidade</label>
                 <select name="cidades" class="form-control">
-                <option value="" selected disabled>Selecione a cidade</option>
+                <option value="" selected disabled>{{$pessoa->cidades->nome_cidade}}</option>
                 @foreach ($cidades as $id_cidade => $nome_cidade)
                 <option value="{{ $id_cidade }}">{{ $nome_cidade }}</option>
                 @endforeach

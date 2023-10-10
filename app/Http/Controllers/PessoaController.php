@@ -30,9 +30,14 @@ class PessoaController extends Controller
 
     public function create(Request $request)
     {
+
+        $userId = Auth::id();
+
+        
         $pessoa = new Pessoa;
         $pessoa->nome_pessoa = $request->input('cliente');
         $pessoa->tel_pessoa = $request->input('phone');
+        $pessoa->cod_user = $userId;
         $pessoa->save();
 
 
@@ -47,12 +52,12 @@ class PessoaController extends Controller
         $pessoa->save();
 
 
-        $id_cidade = $request->input('id_cidade');
+        // $id_cidade = $request->input('id_cidade');
 
 
-        $id_cidade = Cidade::find($id_cidade);
-        $endereco->cidade()->associate($id_cidade);
-        $endereco->save();
+        // $id_cidade = Cidade::find($id_cidade);
+        // $endereco->cidade()->associate($id_cidade);
+        // $endereco->save();
 
         // $endereco->id_cidade = $request->input('id_cidade');
         // $endereco->save();
@@ -60,7 +65,7 @@ class PessoaController extends Controller
         // $cidade->cod_estado = $request->input('id_estado');
         // $cidade->save();
 
-        return redirect()->back()->with('success', 'Cliente cadastrado com sucesso!');
+        return redirect()->route('pessoa.historypessoa')->with('success', 'Cliente cadastrado com sucesso!');
     }
 
 
@@ -78,7 +83,12 @@ class PessoaController extends Controller
         if ($request->isMethod('post')) {
             $pessoas = Pessoa::where('nome_pessoa', 'LIKE', '%' . $request->nome_cliente . '%')->get();
         } else {
-            $pessoas = Pessoa::where('cod_user', $userId)->get();
+            if($pessoa->deleted_at != null){
+                $pessoas = Pessoa::where('cod_user', $userId)->withTrashed()->get();
+            }else{
+                $pessoas = Pessoa::where('cod_user', $userId)->get();
+            }
+                
         }
 
         return view('pessoa.historypessoa', compact('pessoas'));
@@ -91,15 +101,15 @@ class PessoaController extends Controller
         $cidades = Cidade::pluck('nome_cidade', 'id_cidade');
         $estados = Estado::pluck('nome_estado', 'id_estado');
         $paises = Pais::pluck('nome_pais', 'id_pais');
+        $endereco = Endereco::pluck('endereco', 'id_enderecos');
 
-        return view('pessoa.insertpessoa', compact('cidades', 'estados', 'paises'));
         $pessoa = $idpessoa;
 
-        return view('pessoa.editpessoa', compact('pessoa', 'cidades', 'estados', 'paises'));
+        return view('pessoa.editpessoa', compact('pessoa', 'cidades', 'estados', 'paises', 'endereco'));
     }
 
 
-    public function update(Request $request, Pessoa $pessoa)
+    public function update(Request $request, Pessoa $pessoa, Endereco $endereco)
     {
         $pessoa = Pessoa::find('idpessoa');
 
@@ -118,22 +128,20 @@ class PessoaController extends Controller
         $pessoa->save();
 
 
-        $id_cidade = $request->input('id_cidade');
+        // $id_cidade = $request->input('id_cidade');
 
 
-        $id_cidade = Cidade::find($id_cidade);
-        $endereco->cidade()->associate($id_cidade);
-        $endereco->save();
-
-        $pessoa->nome_pessoa = $request->nome_pessoa;
-        $pessoa->tel_pessoa = $request->tel_pessoa;
-        $pessoa->save();
+        // $id_cidade = Cidade::find($id_cidade);
+        // $endereco->cidade()->associate($id_cidade);
+        // $endereco->save();
 
         return redirect()->route('pessoa.historypessoa')->with('success', 'Cadastro atualizado com sucesso!');;
     }
 
-    public function destroy(Pessoa $pessoa)
+    public function destroy($idpessoa)
     {
-        //
+        $pessoa = Pessoa::where('idpessoa', $idpessoa)->delete();
+
+        return redirect()->back()->with('success', 'Cadastro Inativado com sucesso!');
     }
 }
