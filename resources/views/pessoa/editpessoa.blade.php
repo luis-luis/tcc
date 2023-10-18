@@ -27,7 +27,7 @@
         <div class="mb-3">
             <label for="">Cidade</label>
                 <select name="cidades" class="form-control">
-                <option value="" selected disabled>{{$pessoa->cidades->nome_cidade}}</option>
+                <option value="" selected disabled>Selecione a cidade</option>
                 @foreach ($cidades as $id_cidade => $nome_cidade)
                 <option value="{{ $id_cidade }}">{{ $nome_cidade }}</option>
                 @endforeach

@@ -48,7 +48,7 @@ class PessoaController extends Controller
         $endereco->save();
 
 
-        $pessoa->id_endereco = $endereco->id;
+        $pessoa->id_endereco = $endereco->id_enderecos;
         $pessoa->save();
 
 
@@ -109,22 +109,22 @@ class PessoaController extends Controller
     }
 
 
-    public function update(Request $request, Pessoa $pessoa, Endereco $endereco)
+    public function update(Request $request, $idpessoa)
     {
-        $pessoa = Pessoa::find('idpessoa');
+        // dd($request);
 
-        $pessoa->nome_pessoa = $request->input('cliente');
-        $pessoa->tel_pessoa = $request->input('phone');
+        $pessoa = Pessoa::where('idpessoa', $idpessoa)->first();
+        $pessoa->nome_pessoa = $request->nome_pessoa;
+        $pessoa->tel_pessoa = $request->tel_pessoa;
         $pessoa->save();
 
-
-        $endereco->endereco = $request->input('endereco');
-        $endereco->id_cidade = $request->input('id_cidade');
+        $endereco = Endereco::where('id_enderecos', $pessoa->endereco->id_enderecos)->first();
+        $endereco->endereco = $request->endereco;
         $endereco->id_cidade = $request->cidades;
         $endereco->save();
 
 
-        $pessoa->id_endereco = $endereco->id;
+        $pessoa->id_endereco = $endereco->id_enderecos;
         $pessoa->save();
 
 

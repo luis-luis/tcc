@@ -38,7 +38,7 @@
 
 <!-- FOOTER -->
 <footer class="container">
-    <p contenteditable="true" spellcheckker="false">© 2022 Agronote</p>
+    <p contenteditable="true" spellcheckker="false">© 2022-2023 Agronote</p>
 </footer>
 
 

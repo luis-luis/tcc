@@ -11,7 +11,7 @@ class Endereco extends Model
 
     public $timestamps = false;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_enderecos';
 
     public function cidade()
     {

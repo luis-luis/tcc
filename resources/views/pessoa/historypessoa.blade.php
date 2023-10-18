@@ -43,7 +43,7 @@
                             <td scope="row">{{ $pessoa->nome_pessoa }}</td>
                             <td scope="row">{{ $pessoa->tel_pessoa }}</td>
                             <td><a href="{{route('pessoa.editpessoa', $pessoa->idpessoa)}}" type="button" class="btn btn-warning">Editar cadastro</a></td>
-                            <td><a href="{{route('pessoa.destroypessoa', $pessoa->idpessoa)}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja excluir esse produto?');">Excluir cadastro</a></td>
+                            <td><a href="{{route('pessoa.destroypessoa', $pessoa->idpessoa)}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja excluir esse cliente?');">Excluir cadastro</a></td>
                         </tr>
                         @endforeach
                     </tbody>
