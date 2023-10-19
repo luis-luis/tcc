@@ -24,17 +24,68 @@
 
 <!-- Listagem da despesa-->
 
-    <div class="container py-3">
-    <div class="col-md-7">
-        <p class="lead" text->Despesas anteriores</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Despesa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($dados as $despesa)
+                            <tr>
+                                <td scope="row" name="idreceitas">{{ $despesa->nome_despesa }}</td>
+                                <td>
+                                    <button class="btn btn-secondary" data-toggle="modal" data-target="#despesa{{$despesa->id}}">Detalhes da despesa</button>
+                                    <div class="modal fade" tabindex="-1" id="despesa{{$despesa->id}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Detalhes da despesa</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Despesa</th>
+                                                                <th scope="col">Valor</th>
+                                                                <th scope="col">Data</th>
+                                                                <th scope="col">Detalhes despesa</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td scope="row">{{ $despesa->nome_despesa }}</td>
+                                                                <td scope="row">{{ $despesa->valor_despesa }}</td>
+                                                                <td scope="row">{{ $despesa->data_despesa }}</td>
+                                                                <td scope="row">{{ $despesa->descricao_despesa }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    @foreach($dados as $despesa)
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><b>Despesa: <b>{{$despesa->nome_despesa}} </li>
-            <li class="list-group-item"><b>Valor: <b>{{$despesa->valor_despesa}} </li>
-            <li class="list-group-item"><b>Data: <b>{{$despesa->data_despesa}} </li>
-        </ul>
-    @endforeach
-
 </div>
 @endsection

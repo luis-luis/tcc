@@ -48,7 +48,7 @@ Route::any('/receita/{idreceitas}/removerassociacao', [ReceitaController::class,
 
 Route::post('/receita/{idreceitas}/associarusuario', [ReceitaController::class, 'associarusuario'])->name('receita.associarusuario');
 
-//Route::any('/saveveneno', [ReceitaController::class, 'insertveneno'])->name('receita.saveveneno');
+Route::any('/receita/historypulv', [ReceitaController::class, 'historypulv'])->name('produtor.historypulv');
 
 // pulverizacao //
 

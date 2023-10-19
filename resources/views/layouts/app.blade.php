@@ -47,7 +47,7 @@
                             <a class="nav-link" href="{{route('produtor.index')}}">Gerar nova despesa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('receita.history')}}">Histórico de pulverizações</a>
+                            <a class="nav-link" href="{{route('produtor.historypulv')}}">Histórico de pulverizações</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('produtor.mostrarlojista')}}">Solicitar cotação</a>

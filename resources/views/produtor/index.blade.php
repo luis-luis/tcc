@@ -13,12 +13,16 @@
     <div class="container py-3">
         @csrf
         <div class="mb-3">
-            <label class="form-label">Descrição</label>
+            <label class="form-label">Despesa</label>
             <input type="text" class="form-control" id="nome_despesa" name="nome_despesa">
         </div>
         <div class="mb-3">
             <label for="phone">Valor da despesa</label>
             <input type="number" class="form-control" id="valor_despesa" name="valor_despesa">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descrição despesa</label>
+            <input type="text" class="form-control" id="descricao_despesa" name="descricao_despesa">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>

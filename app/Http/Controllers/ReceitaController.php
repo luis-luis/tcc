@@ -149,4 +149,14 @@ class ReceitaController extends Controller
         return redirect(route('receita.history'))->with('success', $message);
 
     }
+
+    public function historypulv(Request $request){
+
+        $userId = Auth::id();
+        
+        $historypulv = Receita::where('cod_user_cliente', $userId)->get();
+
+        return view('produtor.historypulv', compact('historypulv'));
+
+    }
 }

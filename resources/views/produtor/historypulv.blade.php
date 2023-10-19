@@ -27,33 +27,22 @@
     <div class="row">
         <div>
             <div class="mb-3">
-                @if(session("success"))
-                <div class="alert alert-success" role="alert">
-                    {{session("success")}}
-                </div>
-                @endif
                 <div class="mb-3">
-                    @if(session("erro"))
-                    <div class="alert alert-danger" role="alert">
-                        {{session("erro")}}
-                    </div>
-                    @endif
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Nº Pulverização</th>
-                                <th scope="col">Cliente</th>
+                                <th scope="col">Cultura</th>
                                 <th scope="col">Data pulverização</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($receitas as $pulv)
+                            @foreach($historypulv as $pulv)
                             <tr>
                                 <td scope="row" name="idreceitas">{{ $pulv->idreceitas }}</td>
-                                <td name="nome_pessoa">{{ $pulv->pessoa->nome_pessoa }}</td>
+                                <td name="nome_pessoa">{{ $pulv->cult }}</td>
                                 <td name="data_receita">{{ $pulv->data_receita }}</td>
-                                <td name="tel_pessoa">{{ $pulv->tel_pessoa }}</td>
                                 <td>
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#pulv{{$pulv->idreceitas}}">Detalhes da pulverização</button>
                                     <div class="modal fade" tabindex="-1" id="pulv{{$pulv->idreceitas}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -90,10 +79,7 @@
                                                                 <td scope="row">{{ $pulv->area_app }}</td>
                                                                 <td scope="row">{{ $pulv->cult }}</td>
                                                                 <td scope="row">{{ $a->agrotoxico->nome_agrotoxico }}</td>
-                                                                <td scope="row">{{ $pulv->qtd_veneno }}</td>
-                                                                <td>
-                                                                    <a href="{{route('receita.removeagrotoxico', ['idreceitas'=>$pulv->idreceitas ,'idagrotoxico'=>$a->cod_agrotoxico])}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja remover este agrotóxico?');">Remover Agrotóxico</a>
-                                                                </td>
+                                                                <td scope="row">{{ $a->qtd_veneno }}</td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
@@ -103,54 +89,6 @@
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-success" data-toggle="modal" data-target="#pulverizacao{{$pulv->idreceitas}}">Associar pulverização</button>
-                                    <div class="modal fade" tabindex="-1" id="pulverizacao{{$pulv->idreceitas}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Associar pulverização</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form method="post" action="{{ route('receita.associarusuario', ['idreceitas' => $pulv->idreceitas])}}">
-                                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                                    <div class="modal-body">
-                                                        <table class="table table-striped">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Nome cliente</td>
-                                                                    <td scope="row">
-                                                                        <select name="id" class="form-control">
-                                                                            <option value="" selected>Selecione o Cliente</option>
-                                                                            @foreach($user as $cliente)
-                                                                            <option value="{{$cliente->id}}">{{$cliente->name}}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-success">Associar</button>
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div>
-                                            <a href="{{ route('receita.removerassociacao', ['idreceitas' => $pulv->idreceitas]) }}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja remover o vínculo dessa pulverização?');">
-                                                Remover associação cliente.
-                                            </a>
                                         </div>
                                     </div>
                                 </td>

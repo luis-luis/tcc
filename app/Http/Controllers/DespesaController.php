@@ -49,6 +49,7 @@ class DespesaController extends Controller
         try {
             $despesa->nome_despesa = $request->nome_despesa;
             $despesa->valor_despesa = $request->valor_despesa;
+            $despesa->descricao_despesa = $request->descricao_despesa;
             $despesa->cod_user = $userId;
             $despesa->data_despesa = Carbon::now();
             $despesa->save();
