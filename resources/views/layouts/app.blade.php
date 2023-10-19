@@ -97,6 +97,19 @@
                     </ul>
                     @endif
 
+                    @if(Auth::user()->leveluser == 4)
+                    <ul class="navbar-nav me-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('registro') }}">{{ __('Cadastro de usuário') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.user') }}"> Lista de usuários </a>
+                        </li>
+                        @endauth
+                    </ul>
+                    @endif
+
                     @endif
 
                     <!-- Right Side Of Navbar -->
@@ -110,9 +123,9 @@
                         @endif
 
                         @if (Route::has('register'))
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('registro') }}">{{ __('Registro') }}</a>
-                        </li>
+                        </li> -->
                         @endif
                         @else
                         <li class="nav-item dropdown">

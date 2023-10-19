@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Controllers\\PulvVenenoController' => $baseDir . '/app/Http/Controllers/PulvVenenoController.php',
     'App\\Http\\Controllers\\ReceitaController' => $baseDir . '/app/Http/Controllers/ReceitaController.php',
     'App\\Http\\Controllers\\RegistrationController' => $baseDir . '/app/Http/Controllers/RegistrationController.php',
+    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

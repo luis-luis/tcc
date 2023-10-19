@@ -579,6 +579,7 @@ class ComposerStaticInit4940f105d05e5f5b80997460cc7f261d
         'App\\Http\\Controllers\\PulvVenenoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PulvVenenoController.php',
         'App\\Http\\Controllers\\ReceitaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceitaController.php',
         'App\\Http\\Controllers\\RegistrationController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegistrationController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

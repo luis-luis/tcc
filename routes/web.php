@@ -13,7 +13,7 @@ use App\Models\Receita;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +33,6 @@ Route::get('/', [HomeController::class, 'index'])->name('site.home');
 Route::any('/receita', [ReceitaController::class, 'index'])->name('receita.history');
 
 Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita.insert');
-
-//Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
-
-//Route::get('/receitashow', [ReceitaController::class, 'show'])->name('receita.show');
 
 Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
 
@@ -122,3 +118,15 @@ Route::any('/pessoa/updatepessoa/{idpessoa}', [PessoaController::class, 'update'
 Route::any('/pessoa/destroypessoa/{idpessoa}', [PessoaController::class, 'destroy'])->name('pessoa.destroypessoa');
 
 // pessoa //
+
+// users //
+
+Route::any('users/show', [UserController::class, 'show'])->name('users.user');
+
+Route::any('users/edituser/{id}', [UserController::class, 'edit'])->name('users.edituser');
+
+Route::any('users/updateuser/{id}', [UserController::class, 'update'])->name('users.updateuser');
+
+Route::any('users/destroyuser/{id}', [UserController::class, 'destroy'])->name('users.destroyuser');
+
+// users //
