@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,16 +49,25 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, User $user)
-    {
+    public function update(Request $request, $id)
+    {   
+        $user = User::where('id', $id)->first();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        Hash::make($request->password);
+
+        $user->save();
+
+        return redirect()->route('users.user')->with('Usuário atualizado!');
         
     }
 
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user = User::where('id', $user)->delete();
+        $user = User::where('id', $id)->delete();
 
-        return redirect()->route('lojista.history')->with('success', 'Usuário excluido com sucesso!');
+        return redirect()->route('users.user')->with('success', 'Usuário excluido com sucesso!');
     }
 }

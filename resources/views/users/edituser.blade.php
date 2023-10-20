@@ -20,6 +20,10 @@
             <label for="email">Email</label>
             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" value="{{ $user->email }}">
         </div>
+        <div class="mb-3">
+            <label for="password">{{ __('Nova Senha') }}</label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+        </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
             <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">

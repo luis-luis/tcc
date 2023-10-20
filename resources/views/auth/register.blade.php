@@ -70,6 +70,7 @@
                                     <option value="1">Produtor</option>
                                     <option value="2">Agronomo</option>
                                     <option value="3">Lojista</option>
+                                    <option value="4">Administrador</option>
                                 </select>
                                 @error('leveluser')
                                 <span class="invalid-feedback" role="alert">
