@@ -1202,6 +1202,6 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+/******/ 	$('.money').mask('000.000.000.000.000,00', {reverse: true});
 /******/ })()
 ;

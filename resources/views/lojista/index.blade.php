@@ -30,12 +30,14 @@
             <input type="text" class="form-control" id="descricao_produto" name="descricao_produto">
         </div>
         <div class="mb-3">
-            <label for="phone">Valor do produto</label>
-            <input type="number" class="form-control" id="valor_produto" name="valor_produto">
+            <label class="form-label">Valor do produto</label>
+            <input class="form-control" class="money" type="number" placeholder="R$ 99999,99" maxlength="9" id="valor_produto" 
+            name="valor_produto" step="0.01" min="0.01">
         </div>
         <div class="mb-3">
-            <label for="phone">Quantidade</label>
-            <input type="number" class="form-control" id="quantidade_produto" name="quantidade_produto">
+            <label class="form-label">Quantidade</label>
+            <input type="text" class="form-control" id="quantidade_produto" name="quantidade_produto" pattern="\d*" maxlength="9" 
+            onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>

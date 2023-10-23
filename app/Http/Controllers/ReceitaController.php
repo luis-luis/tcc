@@ -59,7 +59,7 @@ class ReceitaController extends Controller
         $receita->tanque_veneno = $request->tanque_veneno;
         $receita->area_app = $request->area_app;
         $receita->cult = $request->cult;
-        $receita->data_receita = Carbon::createFromFormat('d/m/Y', $request->stockupdate)->format('Y-m-d');
+        $receita->data_receita = Carbon::now();
         $userId = Auth::user()->id;
         $receita->coduser = $userId;
         $receita->save();

@@ -35,7 +35,8 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Tamanho do tanque de pulverização (em litros)</label>
-            <input type="number" class="form-control" id="tanque_veneno" name="tanque_veneno">
+            <input type="text" class="form-control" id="tanque_veneno" name="tanque_veneno" pattern="\d*" maxlength="6"
+            onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Avançar</button>

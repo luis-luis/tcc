@@ -29,7 +29,7 @@
             </div>
             <div class="col-5 mb-3">
                 <label class="form-label">Quantidade de veneno (em litros)</label>
-                <input type="number" class="form-control" id="quantidade" name="quantidade">
+                <input type="number" class="form-control" id="quantidade" name="quantidade" placeholder="Ex: 1150 (informar apenas números)">
             </div>
         </div>
         <div class="row">

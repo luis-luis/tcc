@@ -40,7 +40,7 @@
                                 <tr>
                                     <td scope="row" name="idproduto">{{ $cotacao->idcotacoes }}</td>
                                     <td name="nome_produto">{{ $cotacao->status->status }}</td>
-                                    <td name="valor_produto">{{ $cotacao->valor_cotacao }}</td>
+                                    <td name="valor_produto">R$ {{ number_format( $cotacao->valor_cotacao, 0,",",".") }}</td>
                                     <td>
                                         <button class="btn btn-secondary" data-toggle="modal" data-target="#cotacao{{$cotacao->idcotacoes}}">Visualizar itens da cotação</button>
                                         <div class="modal fade" tabindex="-1" id="cotacao{{$cotacao->idcotacoes}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -68,7 +68,7 @@
                                                                 <tr>
                                                                     <td scope="row">{{ $item->cod_cotacao }}</td>
                                                                     <td scope="row">{{ $item->produto->nome_produto }}</td>
-                                                                    <td scope="row">{{ $item->produto->valor_produto }}</td>
+                                                                    <td scope="row">R$ {{ $item->produto->valor_produto }}</td>
                                                                     <td scope="row">{{ $item->qtd_produto }}</td>
                                                                     <td scope="row">{{ $cotacao->status->status }}</td>
                                                                 </tr>
