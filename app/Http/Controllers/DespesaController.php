@@ -54,7 +54,7 @@ class DespesaController extends Controller
             $despesa->data_despesa = Carbon::now();
             $despesa->save();
 
-            return redirect()->route('site.home');
+            return redirect()->route('produtor.history')->with('success', "Despesa cadastrada!");
         } catch (\Exception $e) {
             echo $e->getMessage();
         };

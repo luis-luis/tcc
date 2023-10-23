@@ -17,8 +17,8 @@
             <input type="text" class="form-control" id="nome_despesa" name="nome_despesa">
         </div>
         <div class="mb-3">
-            <label for="phone">Valor da despesa</label>
-            <input type="number" class="form-control" id="valor_despesa" name="valor_despesa">
+            <label class="form-label">Valor da despesa</label>
+            <input type="number" class="form-control" id="valor_despesa" name="valor_despesa" step="0.01" min="0.01">
         </div>
         <div class="mb-3">
             <label class="form-label">Descrição despesa</label>

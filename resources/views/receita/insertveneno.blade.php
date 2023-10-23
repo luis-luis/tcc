@@ -14,6 +14,11 @@
     <div class="container py-3">
         <div id="camposVeneno">
             <div class="mb-3">
+                @if(session("success"))
+                <div class="alert alert-success" role="alert">
+                    {{session("success")}}
+                </div>
+                @endif
                 <label for="agrotoxico">Veneno a ser utilizado:</label>
                 <select name="agrotoxicos[][idagrotoxico]" class="form-control">
                     <option value="" selected disabled>Selecione o veneno</option>
@@ -32,9 +37,7 @@
             <a href="{{ route('receita.insert') }}" type="button" class="btn btn-primary col-1 ml-1">
                 Voltar
             </a>
-            <button id="btnAdicionarVeneno" type="button" class="btn btn-danger col-1 ml-1">Adicionar veneno</button>
         </div>
 </form>
 
 @endsection
-

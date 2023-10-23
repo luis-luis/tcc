@@ -70,7 +70,7 @@
                                                                     <td scope="row">{{ $item->produto->nome_produto }}</td>
                                                                     <td scope="row">{{ $item->produto->valor_produto }}</td>
                                                                     <td scope="row">{{ $item->qtd_produto }}</td>
-                                                                    <td scope="row">{{ $cotacao->cod_status }}</td>
+                                                                    <td scope="row">{{ $cotacao->status->status }}</td>
                                                                 </tr>
                                                                 @endforeach
                                                             </tbody>

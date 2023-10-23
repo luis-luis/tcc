@@ -27,6 +27,7 @@ class ReceitaController extends Controller
         $receitas = Receita::with(['pessoa','pulvVeneno'=>function($q){
             return $q->with(['agrotoxico']);
         }])->where('coduser', $userId)
+        ->orderBy('idreceitas', 'desc')
         ->get();
         
 
@@ -58,7 +59,7 @@ class ReceitaController extends Controller
         $receita->tanque_veneno = $request->tanque_veneno;
         $receita->area_app = $request->area_app;
         $receita->cult = $request->cult;
-        $receita->data_receita = now();
+        $receita->data_receita = Carbon::createFromFormat('d/m/Y', $request->stockupdate)->format('Y-m-d');
         $userId = Auth::user()->id;
         $receita->coduser = $userId;
         $receita->save();
@@ -89,7 +90,9 @@ class ReceitaController extends Controller
 
         $agrotoxicos = Agrotoxico::all();
 
-        return view('receita.insertveneno', compact('agrotoxicos'));
+        $message = "Agrotoxico adicionado a pulverização com sucesso: ".$agrotoxico->nome_agrotoxico;
+
+        return redirect(route('receita.insertveneno', compact('agrotoxicos')))->with('success', $message);
     }
 
     public function associarusuario(Request $request, $idreceitas){

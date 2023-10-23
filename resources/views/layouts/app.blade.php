@@ -100,9 +100,11 @@
                     @if(Auth::user()->leveluser == 4)
                     <ul class="navbar-nav me-auto">
                         @auth
+                        @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('registro') }}">{{ __('Cadastro de usuário') }}</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.user') }}"> Lista de usuários </a>
                         </li>
@@ -117,16 +119,16 @@
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
+                        </li> -->
                         @endif
 
-                        @if (Route::has('register'))
+
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('registro') }}">{{ __('Registro') }}</a>
                         </li> -->
-                        @endif
+
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
