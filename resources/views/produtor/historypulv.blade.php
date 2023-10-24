@@ -11,7 +11,7 @@
     <div class="container py-3">
         @csrf
         <div class="mb-3">
-            <label class="form-label">Produtor</label>
+            <label class="form-label">Pesquise por cultura</label>
             <input type="text" class="form-control" id="nome_cliente" name="nome_cliente">
         </div>
         <button type="submit" class="btn btn-success col-1 ml-1">Pesquisar</button>
@@ -41,7 +41,7 @@
                             @foreach($historypulv as $pulv)
                             <tr>
                                 <td scope="row" name="idreceitas">{{ $pulv->idreceitas }}</td>
-                                <td name="nome_pessoa">{{ $pulv->cult }}</td>
+                                <td name="cult">{{ $pulv->cult }}</td>
                                 <td name="data_receita">{{ $pulv->data_receita }}</td>
                                 <td>
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#pulv{{$pulv->idreceitas}}">Detalhes da pulverização</button>

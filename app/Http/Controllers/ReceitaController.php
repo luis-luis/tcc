@@ -165,8 +165,17 @@ class ReceitaController extends Controller
     public function historypulv(Request $request){
 
         $userId = Auth::id();
+
+        $datareceita['data_receita'] = Carbon::parse($request['data_receita'])->format('d/m/Y');
         
-        $historypulv = Receita::where('cod_user_cliente', $userId)->get();
+        if($request->isMethod('post')){
+            $historypulv = Receita::where('cult', 'LIKE', '%' . $request->cult . '%')->where('cod_user_cliente', $userId)->get();
+        }else{
+            $historypulv = Receita::where('cod_user_cliente', $userId)->get();
+        }
+        foreach($historypulv as $pulv){
+            $pulv->data_receita = Carbon::parse($pulv->data_receita)->format('d/m/Y H:i:s');
+        }
 
         return view('produtor.historypulv', compact('historypulv'));
 

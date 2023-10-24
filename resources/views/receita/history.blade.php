@@ -52,7 +52,7 @@
                             <tr>
                                 <td scope="row" name="idreceitas">{{ $pulv->idreceitas }}</td>
                                 <td name="nome_pessoa">{{ $pulv->pessoa->nome_pessoa }}</td>
-                                <td name="data_receita" type="date">{{ $pulv->data_receita }}</td>
+                                <td name="data_receita">{{ $pulv->data_receita }}</td>
                                 <td name="tel_pessoa">{{ $pulv->tel_pessoa }}</td>
                                 <td>
                                     <button class="btn btn-secondary" data-toggle="modal" data-target="#pulv{{$pulv->idreceitas}}">Detalhes da pulverização</button>

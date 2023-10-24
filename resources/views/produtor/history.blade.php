@@ -65,7 +65,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td scope="row">{{ $despesa->nome_despesa }}</td>
-                                                                <td scope="row">R$ {{ number_format($despesa->valor_despesa, 0,",",".") }}</td>
+                                                                <td scope="row">R$ {{ number_format($despesa->valor_despesa, 2,",",".") }}</td>
                                                                 <td scope="row">{{ $despesa->data_despesa }}</td>
                                                                 <td scope="row">{{ $despesa->descricao_despesa }}</td>
                                                             </tr>
