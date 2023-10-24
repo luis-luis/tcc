@@ -69,14 +69,24 @@ class DespesaController extends Controller
      */
     public function show(Request $request)
     {
+        $datadespesa['data_despesa'] = Carbon::parse($request['data_despesa']);
+
         $userId = Auth::id();
 
         if ($request->isMethod('post')) {
             $dados = Despesa::where('nome_despesa', 'LIKE', '%' . $request->nome_despesa . '%')->where('cod_user', $userId)->get();
             // dd($request->nome_despesa);
 
+            foreach($dados as $datadespesa){
+                $datadespesa->data_despesa = Carbon::parse($datadespesa->data_despesa)->format('d/m/Y H:i:s');
+            }
+
         } else {
             $dados = Despesa::where('cod_user', $userId)->get();
+
+            foreach($dados as $datadespesa){
+                $datadespesa->data_despesa = Carbon::parse($datadespesa->data_despesa)->format('d/m/Y H:i:s');
+            }
         }
 
         return view('produtor.history', ['dados' => $dados]);

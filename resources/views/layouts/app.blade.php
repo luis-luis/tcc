@@ -10,11 +10,7 @@
 
     <title>Agronote</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/bootstrap.js') }}" defer></script>
-    <script src="{{ asset('js/jquerymask.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -163,7 +159,15 @@
             <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer> -->
 
+        <!-- Scripts -->
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <script src="{{ asset('js/jquerymask.js') }}"></script>
+        <script src="{{ asset('js/jquerymaskMoney.js') }}"></script>
+
         @yield('javascript')
+
         <script>
             const tel = document.getElementById('phone') // Seletor do campo de telefone
 
@@ -177,7 +181,18 @@
                 tel.value = valor // Insere o(s) valor(es) no campo
             }
         </script>
+
     </div>
+    <script>
+        jQuery(document).ready(function($) {
+            $('.currency').maskMoney();
+        });
+    </script>
+    <!-- <script>
+        $('.rounded').text(function(i, curr) {
+            return parseFloat(curr).toFixed(2)
+        })
+    </script> -->
 </body>
 
 </html>

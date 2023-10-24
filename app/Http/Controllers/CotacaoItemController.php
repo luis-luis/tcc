@@ -97,12 +97,20 @@ class CotacaoItemController extends Controller
     */
     public function show(Request $request)
     {
+        $datacotacao['data_cotacao'] = Carbon::parse($request->data_cotacao);
+
         $dados = Cotacao::with(['itens' => function ($q) {
             return $q->with(['produto' => function ($q) {
                 return $q->withTrashed();
             }]);
         }])->where('cod_user', '=', Auth::user()->id)->orderBy('idcotacoes', 'desc')->get();
         // dd($dados[5]);
+
+        foreach($dados as $datacotacao){
+            $datacotacao->data_cotacao = Carbon::parse($datacotacao->data_cotacao)->format('d/m/Y H:i:s');
+        }  
+
+
         return view('produtor.mostrarcotacao', compact('dados'));
     }
 
@@ -122,6 +130,7 @@ class CotacaoItemController extends Controller
 
         }else{
             $cotacao->cod_status = 5;
+            $cotacao->data_cancelamento = Carbon::now();
             $cotacao->save();
         }
 

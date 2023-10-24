@@ -31,7 +31,8 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Valor do produto</label>
-            <input class="form-control" class="money" type="number" placeholder="R$ 99999,99" maxlength="9" id="valor_produto" 
+            <input type="text" data-prefix="R$ " data-affixes-stay="true" data-thousands="." data-decimal=","
+            class="form-control currency" placeholder="R$ 9.999,99" maxlength="15" id="valor_produto" 
             name="valor_produto" step="0.01" min="0.01">
         </div>
         <div class="mb-3">

@@ -32,6 +32,9 @@ class ReceitaController extends Controller
         ->orderBy('idreceitas', 'desc')
         ->get();
         
+        foreach($receitas as $receita){
+            $receita->data_receita = Carbon::parse($receita->data_receita)->format('d/m/Y H:i:s');
+        }
 
         if ($request->isMethod('post')) {
             //dd($request->all());

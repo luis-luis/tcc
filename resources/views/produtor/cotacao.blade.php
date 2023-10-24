@@ -36,7 +36,7 @@
                             <td name="valor_produto">R$ {{ $produto->valor_produto }}</td>
                             <td name="qtd_produto">{{ $produto->qtd_produto }}</td>
                             <th>
-                                <input type="number" name="produto[{{$produto->id}}]" max="{{$produto->qtd_produto}}" min="0" value="0" maxlength="5">
+                                <input class="form-control" type="number" name="produto[{{$produto->id}}]" max="{{$produto->qtd_produto}}" min="0" value="0" maxlength="5">
                             </th>
                             <th>
 
