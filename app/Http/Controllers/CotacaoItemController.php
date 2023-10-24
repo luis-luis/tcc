@@ -98,6 +98,7 @@ class CotacaoItemController extends Controller
     public function show(Request $request)
     {
         $datacotacao['data_cotacao'] = Carbon::parse($request->data_cotacao);
+        $datacancelamento['data_cancelamento'] = Carbon::parse($request->data_cotacao);
 
         $dados = Cotacao::with(['itens' => function ($q) {
             return $q->with(['produto' => function ($q) {
@@ -109,6 +110,9 @@ class CotacaoItemController extends Controller
         foreach($dados as $datacotacao){
             $datacotacao->data_cotacao = Carbon::parse($datacotacao->data_cotacao)->format('d/m/Y H:i:s');
         }  
+        foreach($dados as $datacancelamento){
+            $datacancelamento->data_cancelamento = Carbon::parse($datacancelamento->data_cancelamento)->format('d/m/Y H:i:s');
+        }
 
 
         return view('produtor.mostrarcotacao', compact('dados'));

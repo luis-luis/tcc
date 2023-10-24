@@ -42,7 +42,7 @@
                                     <td scope="row" name="idproduto">{{ $cotacao->idcotacoes }}</td>
                                     <td scope="row" name="data_cotacao">{{ $cotacao->data_cotacao }}</td>
                                     <td name="status">{{ $cotacao->status->status }}</td>
-                                    <td name="valor_cotacao" class="rounded">R$ {{ number_format( $cotacao->valor_cotacao, 0,",",".") }}</td>
+                                    <td name="valor_cotacao" class="rounded">R$ {{ number_format( $cotacao->valor_cotacao, 2,",",".") }}</td>
                                     <td>
                                         <button class="btn btn-secondary" data-toggle="modal" data-target="#cotacao{{$cotacao->idcotacoes}}">Visualizar itens da cotação</button>
                                         <div class="modal fade" tabindex="-1" id="cotacao{{$cotacao->idcotacoes}}" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -63,6 +63,9 @@
                                                                     <th scope="col">Preço Unit.</th>
                                                                     <th scope="col">Quantidade</th>
                                                                     <th scope="col">Status</th>
+                                                                    @if ($cotacao->status->status === 'Cancelado')
+                                                                    <th scope="col">Data de Cancelamento</th>
+                                                                    @endif
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -73,8 +76,8 @@
                                                                     <td scope="row">R$ {{ $item->produto->valor_produto }}</td>
                                                                     <td scope="row">{{ $item->qtd_produto }}</td>
                                                                     <td scope="row">{{ $cotacao->status->status }}</td>
-                                                                    @if($cotacao->data_cancelamento !== null)
-                                                                        <td scope="row">{{ $cotacao->data_cancelamento }}</td>
+                                                                    @if($cotacao->status->status === 'Cancelado')
+                                                                    <td scope="row">{{ $cotacao->data_cancelamento }}</td>
                                                                     @endif
                                                                 </tr>
                                                                 @endforeach
