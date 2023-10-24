@@ -18,7 +18,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Valor da despesa</label>
-            <input type="number" pattern="\d*" placeholder="R$ 99999,99" maxlength="9" class="form-control" id="valor_despesa" 
+            <input class="money" type="number" pattern="\d*" placeholder="R$ 99999,99" maxlength="9" class="form" id="valor_despesa" 
             name="valor_despesa" step="0.01" min="0.01">
         </div>
         <div class="mb-3">

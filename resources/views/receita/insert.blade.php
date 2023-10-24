@@ -21,10 +21,6 @@
                     @endforeach 
                 </select>
         </div>
-        <!-- <div class="mb-3">
-            <label for="phone">Qual o telefone do agricultor?</label>
-            <input type="tel" class="form-control" id="phone" name="phone" maxlength="15" placeholder="(99)99999-9999">
-        </div> -->
         <div class="mb-3">
             <label class="form-label">Qual a cultura onde será aplicada?</label>
             <input type="text" class="form-control" id="cult" name="cult">

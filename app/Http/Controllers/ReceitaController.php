@@ -23,10 +23,12 @@ class ReceitaController extends Controller
 
         $user = User::where('leveluser', 1)->get();
 
+        $datareceita['data_receita'] = Carbon::parse($request['data_receita'])->format('d/m/Y');
+
         // Recupera as informações desejadas do banco de dados
         $receitas = Receita::with(['pessoa','pulvVeneno'=>function($q){
             return $q->with(['agrotoxico']);
-        }])->where('coduser', $userId)
+        }])->where('coduser', $userId, $datareceita)
         ->orderBy('idreceitas', 'desc')
         ->get();
         
@@ -137,9 +139,13 @@ class ReceitaController extends Controller
 
     }
 
-    public function update(Request $request, Receita $receita)
+    public function deletePulv($idreceitas)
     {
-        //
+        $pulv = Receita::where('idreceitas', $idreceitas)->delete();
+
+        $message = "Pulverização removida com sucesso!";
+
+        return redirect(route('receita.history'))->with('success', $message);
     }
 
 

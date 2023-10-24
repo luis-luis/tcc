@@ -36,7 +36,9 @@ Route::any('/showreceita', [ReceitaController::class, 'mostrar'])->name('receita
 
 Route::any('/insertveneno', [ReceitaController::class, 'show'])->name('receita.insertveneno');
 
-Route::any('/saveveneno', [ReceitaController::class, 'showveneno'])->name('receita.saveveneno');
+Route::post('/saveveneno', [ReceitaController::class, 'showveneno'])->name('receita.saveveneno');
+
+Route::any('/receita/{idreceitas}/deletepulv', [ReceitaController::class, 'deletePulv'])->name('receita.deletepulv');
 
 Route::any('/receita/{idreceitas}/agrotoxico/{idagrotoxico}/removeagrotoxico', [ReceitaController::class, 'removeagrotoxico'])->name('receita.removeagrotoxico');
 
