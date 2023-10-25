@@ -23,7 +23,7 @@
         <div class="col-lg-4">
             <img class="" src="icons8-agriculture-100.png" alt="Historic" width="100" height="100">
             <h2>Histórico</h2>
-            <a href="" type="submit" class="btn btn-success"><p>Consulte pulverizações geradas anteriormente.</p></a>
+            <a href="" type="submit" class="btn btn-success"><p>Consulte suas pulverizações e despesas.</p></a>
             <p></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
