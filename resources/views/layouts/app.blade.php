@@ -10,7 +10,7 @@
 
     <title>Agronote</title>
 
-
+    <link type="image/png" sizes="32x32" rel="icon" href="icons8-trigo-color-32.png">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -87,9 +87,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('lojista.vercotacao')}}">Verificar solicitações de produtos</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{route('lojista.history')}}">Histórico de vendas</a>
-                        </li>
+                        </li> -->
                         @endauth
                     </ul>
                     @endif
@@ -151,6 +151,7 @@
 
         <main class="py-4">
             @yield('content')
+
         </main>
 
         <!-- FOOTER
