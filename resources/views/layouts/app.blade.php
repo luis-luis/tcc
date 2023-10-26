@@ -186,7 +186,9 @@
     </div>
     <script>
         jQuery(document).ready(function($) {
-            $('.currency').maskMoney();
+            $('.currency').maskMoney({
+                
+            });
         });
     </script>
     <!-- <script>

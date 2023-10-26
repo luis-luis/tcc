@@ -18,8 +18,8 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Valor da despesa</label>
-            <input type="text" placeholder="R$ 9.999,99" maxlength="15" data-prefix="R$ " data-affixes-stay="true" data-thousands="." data-decimal=","
-            class="form-control currency" id="valor_despesa" name="valor_despesa" step="0.01" min="0.01">
+            <input type="text" placeholder="R$ 9.999,99" maxlength="10" data-thousands="" data-decimal="." data-affixes-stay="true"
+            class="form-control currency" id="valor_despesa" name="valor_despesa">
         </div>
         <div class="mb-3">
             <label class="form-label">Descrição despesa</label>
