@@ -58,7 +58,7 @@
                 </select>
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-success col-1 ml-1">Avançar</button>
+                <button type="submit" class="btn btn-success col-1 ml-1">Salvar</button>
                 <a href="{{route('site.home')}}" type="button" class="btn btn-primary col-1 ml-1">
                     Voltar
                 </a>

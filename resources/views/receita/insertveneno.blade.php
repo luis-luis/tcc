@@ -14,7 +14,7 @@
     <div class="container py-3">
         <div id="camposVeneno">
             <div class="mb-3">
-                @if( $message )
+                @if( isset($message) )
                 <div class="alert alert-success" role="alert">
                     {{ $message }}
                 </div>
