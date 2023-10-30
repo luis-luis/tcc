@@ -23,16 +23,17 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Qual a cultura onde será aplicada?</label>
-            <input type="text" class="form-control" id="cult" name="cult">
+            <input type="text" class="form-control" id="cult" name="cult" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Tamanho da área de aplicação (em alqueires)</label>
-            <input type="number" class="form-control" id="area_app" name="area_app">
+            <input type="text" class="form-control" id="area_app" name="area_app" maxlength="6"
+            onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Tamanho do tanque de pulverização (em litros)</label>
             <input type="text" class="form-control" id="tanque_veneno" name="tanque_veneno" pattern="\d*" maxlength="6"
-            onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;">
+            onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" required>
         </div>
         <div class="row">
             <button type="submit" class="btn btn-success col-1 ml-1">Avançar</button>

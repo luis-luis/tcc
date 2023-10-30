@@ -71,7 +71,7 @@ class ReceitaController extends Controller
 
         $agrotoxicos = Agrotoxico::all();
 
-        return view('receita.insertveneno', compact('agrotoxicos'));
+        return view('receita.insertveneno', compact('agrotoxicos', 'receita'));
     }
 
     public function showveneno(Request $request, Receita $receita)
@@ -97,7 +97,7 @@ class ReceitaController extends Controller
 
         $message = "Agrotoxico adicionado a pulverização com sucesso: ".$agrotoxico->nome_agrotoxico;
 
-        return redirect(route('receita.insertveneno', compact('agrotoxicos')))->with('success', $message);
+        return view('receita.insertveneno', compact('agrotoxicos', 'message'));
     }
 
     public function associarusuario(Request $request, $idreceitas){

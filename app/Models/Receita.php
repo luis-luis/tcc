@@ -10,7 +10,7 @@ class Receita extends Model
 {
     use HasFactory, SoftDeletes;
     
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $primaryKey = 'idreceitas';
 

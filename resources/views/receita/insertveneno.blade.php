@@ -14,9 +14,9 @@
     <div class="container py-3">
         <div id="camposVeneno">
             <div class="mb-3">
-                @if(session("success"))
+                @if( $message )
                 <div class="alert alert-success" role="alert">
-                    {{session("success")}}
+                    {{ $message }}
                 </div>
                 @endif
                 <label for="agrotoxico">Veneno a ser utilizado:</label>
