@@ -33,7 +33,7 @@
                         <tr>
                             <th scope="row" id="idproduto">{{ $produto->id }}</th>
                             <td name="nome_produto">{{ $produto->nome_produto }}</td>
-                            <td name="valor_produto">R$ {{ $produto->valor_produto }}</td>
+                            <td name="valor_produto">R$ {{ number_format ($produto->valor_produto, 2,",",".") }}</td>
                             <td name="qtd_produto">{{ $produto->qtd_produto }}</td>
                             <th>
                                 <input class="form-control" type="number" name="produto[{{$produto->id}}]" max="{{$produto->qtd_produto}}" min="0" value="0" maxlength="5">

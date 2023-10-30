@@ -44,7 +44,7 @@
                         <tr>
                             <td scope="row">{{ $produto->nome_produto }}</td>
                             <td scope="row">{{ $produto->marca_produto }}</td>
-                            <td scope="row">{{ $produto->valor_produto }}</td>
+                            <td scope="row">R$ {{ number_format ($produto->valor_produto, 2,",",".") }}</td>
                             <td scope="row">{{ $produto->qtd_produto }}</td>
                             <td><a href="{{route('lojista.editproduto', $produto->id)}}" type="button" class="btn btn-warning">Editar produto</a></td>
                             <td><a href="{{route('lojista.destroyproduto', $produto->id)}}" type="button" class="btn btn-danger" onclick="javascript:return confirm('Você tem certeza que deseja excluir esse produto?');">Excluir produto</a></td>
