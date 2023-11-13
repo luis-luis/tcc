@@ -128,7 +128,7 @@ class CotacaoItemController extends Controller
             return redirect(route('produtor.mostrarcotacao'))->with('erro', $message);
         }else if($cotacao->cod_status == 1 || $cotacao->cod_status == 3 || $cotacao->cod_status == 5){
 
-            $message = "O pedido não pode ser cancelado pois já está Atendido, Parcialmente atendido ou já está Recusado.";
+            $message = "O pedido não pode ser cancelado pois já está Atendido ou Recusado.";
 
             return redirect(route('produtor.mostrarcotacao'))->with('erro', $message);
 

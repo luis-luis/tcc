@@ -59,7 +59,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.user')->with('Usuário atualizado!');
+        return redirect()->route('users.user')->with('success','Usuário atualizado!');
         
     }
 

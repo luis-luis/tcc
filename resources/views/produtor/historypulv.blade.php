@@ -62,10 +62,10 @@
                                                                 <th scope="col">Nome cliente</th>
                                                                 <th scope="col">Telefone</th>
                                                                 <th scope="col">Tamanho tanque pulverização</th>
-                                                                <th scope="col">Tamanho área (em alqueires)</th>
+                                                                <th scope="col">Tamanho área (Em alqueires)</th>
                                                                 <th scope="col">Cultura aplicada</th>
                                                                 <th scope="col">Agrotoxicos aplicados</th>
-                                                                <th scope="col">Quantidade aplicada (em Litros)</th>
+                                                                <th scope="col">Quantidade aplicada ( Em miliitros (ML) )</th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -75,11 +75,11 @@
                                                                 <td scope="row">{{ $pulv->idreceitas }}</td>
                                                                 <td scope="row">{{ $pulv->pessoa->nome_pessoa }}</td>
                                                                 <td scope="row">{{ $pulv->pessoa->tel_pessoa }}</td>
-                                                                <td scope="row">{{ $pulv->tanque_veneno }}</td>
-                                                                <td scope="row">{{ $pulv->area_app }}</td>
+                                                                <td scope="row">{{ $pulv->tanque_veneno }} litros</td>
+                                                                <td scope="row">{{ $pulv->area_app }} alqueires</td>
                                                                 <td scope="row">{{ $pulv->cult }}</td>
                                                                 <td scope="row">{{ $a->agrotoxico->nome_agrotoxico }}</td>
-                                                                <td scope="row">{{ $a->qtd_veneno }}</td>
+                                                                <td scope="row">{{ $a->qtd_veneno }} Mililitros (ML)</td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>

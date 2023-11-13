@@ -51,7 +51,9 @@ class ReceitaController extends Controller
 
     public function mostrar()
     {
-        $pessoas = Pessoa::all();
+        $userId = Auth::id();
+
+        $pessoas = Pessoa::where('cod_user', $userId)->get();
         return view('receita.insert', compact('pessoas'));
     }
 
